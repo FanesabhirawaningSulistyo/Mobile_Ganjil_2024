@@ -1,3 +1,8 @@
+## 1. Modifikasilah kode pada baris 3 di VS Code atau Editor Code favorit Anda berikut ini agar mendapatkan keluaran (output) sesuai yang diminta!
+![alt text](img/image.png)
+
+
+![alt text](img/image-1.png)
 ## 2. Mengapa sangat penting untuk memahami bahasa pemrograman Dart sebelum kita menggunakan framework Flutter ? Jelaskan!
 
 Karena Flutter sepenuhnya dibangun dari bahasa Dart, jadi untuk mengembangkan aplikasi menggunakan Flutter, kita harus memahami bahasa pemrograman Dart terlebih dahulu sebagai dasarnya.
