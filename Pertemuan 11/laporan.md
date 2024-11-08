@@ -483,7 +483,7 @@ Future<Position> getPosition() async {
 
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 12".<p>
 
-<img src="img/soal12.gif"><p>
+<img src="img/soal12,13,14.gif"><p>
 
 <br><br>
 
@@ -527,7 +527,7 @@ Ketik kode berikut dan sesuaikan. Kode lama bisa Anda comment atau hapus.<p>
 >Untuk pembaruan UI, pada kasus pertama, setState digunakan untuk memperbarui variabel state myPosition. Pada kasus kedua, FutureBuilder digunakan untuk mengelola pembaruan UI secara otomatis. Namun pada akhirnya, hasil tampilan UI terlihat sama karena keduanya memiliki penundaan yang sama, yakni 3 detik.<p>
 
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 13".<p>
-<img src="img/soal12.gif"><p>
+<img src="img/soal12,13,14.gif"><p>
 
 ### Langkah 5: Tambah handling error
 Tambahkan kode berikut untuk menangani ketika terjadi error. Kemudian hot restart.<p>
@@ -541,5 +541,12 @@ else if (snapshot.connectionState == ConnectionState.done) {
 ```
 
 > Soal 14
-> - Apakah ada perbedaan UI dengan langkah sebelumnya? Mengapa demikian?
-> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 14".
+> - Apakah ada perbedaan UI dengan langkah sebelumnya? Mengapa demikian?<p>
+> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 14".<p>
+
+**Jawab**
+- Apakah ada perbedaan UI dengan langkah sebelumnya? Mengapa demikian?<p>
+> Langkah ini tidak mengubah tampilan UI. Hal ini karena langkah ini hanya menambahkan fungsi handleError() yang akan dijalankan jika terjadi kesalahan. Namun, pada langkah ini tidak ada kesalahan yang terjadi selama pemrosesan data lokasi. Oleh karena itu, pesan kesalahan "Something terrible happened!" tidak akan ditampilkan.<p>
+
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 14".<p>
+<img src="img/soal12,13,14.gif"><p>
