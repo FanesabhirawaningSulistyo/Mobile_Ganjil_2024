@@ -484,3 +484,62 @@ Future<Position> getPosition() async {
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 12".<p>
 
 <img src="img/soal12.gif"><p>
+
+<br><br>
+
+# Praktikum 7: Manajemen Future dengan FutureBuilder
+Pola ketika menerima beberapa data secara async dan melakukan update pada UI sebenarnya itu tergantung pada ketersediaan data. Secara umum fakta di Flutter, ada sebuah widget yang membantu Anda untuk memudahkan manajemen future yaitu widget FutureBuilder.<p>
+
+Anda dapat menggunakan FutureBuilder untuk manajemen future bersamaan dengan update UI ketika ada update Future. FutureBuilder memiliki status future sendiri, sehingga Anda dapat mengabaikan penggunaan setState, Flutter akan membangun ulang bagian UI ketika update itu dibutuhkan.<p>
+
+Untuk lebih memahami widget FutureBuilder, mari kita coba dengan praktikum ini.<p>
+
+Setelah Anda menyelesaikan praktikum 6, Anda dapat melanjutkan praktikum 7 ini. Selesaikan langkah-langkah praktikum berikut ini menggunakan editor Visual Studio Code (VS Code) atau Android Studio atau code editor lain kesukaan Anda. Jawablah di laporan praktikum Anda pada setiap soal yang ada di beberapa langkah praktikum ini.<p>
+
+Perhatian: Diasumsikan Anda telah berhasil menyelesaikan Praktikum 6.<p>
+
+### Langkah 1: Modifikasi method getPosition()
+Buka file geolocation.dart kemudian ganti isi method dengan kode ini.<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//d219a26080007e5f.png">
+
+### Langkah 2: Tambah variabel
+Tambah variabel ini di class _LocationScreenState<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//2bd8bac7676f257c.png">
+
+### Langkah 3: Tambah initState()
+Tambah method ini dan set variabel position<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//3214e62efe9a252b.png">
+
+### Langkah 4: Edit method build()
+Ketik kode berikut dan sesuaikan. Kode lama bisa Anda comment atau hapus.<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//85adce0916edeb8e.png">
+
+> Soal 13
+> - Apakah ada perbedaan UI dengan praktikum sebelumnya? Mengapa demikian?
+> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 13".
+> - Seperti yang Anda lihat, menggunakan FutureBuilder lebih efisien, clean, dan reactive dengan Future bersama UI.
+
+**Jawab**
+
+- Apakah ada perbedaan UI dengan praktikum sebelumnya? Mengapa demikian?
+> Kedua praktikum menampilkan koordinat Geolokasi dengan layout yang sama. Hal ini terjadi karena keduanya mengambil lokasi pengguna secara langsung saat aplikasi dimulai.<p>
+
+>Untuk pembaruan UI, pada kasus pertama, setState digunakan untuk memperbarui variabel state myPosition. Pada kasus kedua, FutureBuilder digunakan untuk mengelola pembaruan UI secara otomatis. Namun pada akhirnya, hasil tampilan UI terlihat sama karena keduanya memiliki penundaan yang sama, yakni 3 detik.<p>
+
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 13".<p>
+<img src="img/soal12.gif"><p>
+
+### Langkah 5: Tambah handling error
+Tambahkan kode berikut untuk menangani ketika terjadi error. Kemudian hot restart.<p>
+```dart
+else if (snapshot.connectionState == ConnectionState.done) {
+  if (snapshot.hasError) {
+     return Text('Something terrible happened!');
+  }
+  return Text(snapshot.data.toString());
+}
+```
+
+> Soal 14
+> - Apakah ada perbedaan UI dengan langkah sebelumnya? Mengapa demikian?
+> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 14".
