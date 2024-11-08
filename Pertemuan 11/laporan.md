@@ -388,3 +388,78 @@ Tambahkan kode ini di dalam class _FutureStatePage<p>
 >Perbedaan kode langkah 1 dan kode langkah 4 adalah pada penanganan error. Pada langkah 1, method returnError() tidak menangani error yang terjadi. Jika error terjadi, maka method tersebut akan berhenti dan tidak mengembalikan nilai apa pun.
 
 >Sedangkan pada langkah 4, method handleError() menangani error yang terjadi dengan menggunakan try-catch-finally. Pada try block, method handleError() mencoba untuk menjalankan method returnError(). Jika error terjadi, maka try block akan berhenti dan error akan ditangkap oleh catch block. Pada catch block, method handleError() akan menampilkan error ke layar menggunakan print(). Finally block akan selalu dijalankan, terlepas dari apakah ada error yang terjadi atau tidak.
+
+<br><br>
+
+# Praktikum 6: Menggunakan Future dengan StatefulWidget
+Seperti yang Anda telah pelajari, Stateless widget tidak dapat menyimpan informasi (state), StatefulWidget dapat mengelola variabel dan properti dengan method setState(), yang kemudian dapat ditampilkan pada UI. State adalah informasi yang dapat berubah selama life cycle widget itu berlangsung.<p>
+
+Ada 4 method utama dalam life cycle StatefullWidget:<p>
+
+- initState(): dipanggil sekali ketika state dibangun. Bisa dikatakan ini juga sebagai konstruktor class.
+- build(): dipanggil setiap kali ada perubahan state atau UI. Method ini melakukan destroy UI dan membangun ulang dari nol.
+- deactive() dan dispose(): digunakan untuk menghapus widget dari tree, pada beberapa kasus dimanfaatkan untuk menutup koneksi ke database atau menyimpan data sebelum berpindah screen.
+  
+Setelah Anda menyelesaikan praktikum 5, Anda dapat melanjutkan praktikum 6 ini. Selesaikan langkah-langkah praktikum berikut ini menggunakan editor Visual Studio Code (VS Code) atau Android Studio atau code editor lain kesukaan Anda. Jawablah di laporan praktikum Anda pada setiap soal yang ada di beberapa langkah praktikum ini.<p>
+
+> Perhatian: Diasumsikan Anda telah berhasil menyelesaikan Praktikum 5.
+
+### Langkah 1: install plugin geolocator
+Tambahkan plugin geolocator dengan mengetik perintah berikut di terminal.<p>
+```dart
+flutter pub add geolocator
+```
+
+### Langkah 2: Tambah permission GPS
+Jika Anda menargetkan untuk platform Android, maka tambahkan baris kode berikut di file android/app/src/main/androidmanifest.xml<p>
+```dart
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+```
+
+Jika Anda menargetkan untuk platform iOS, maka tambahkan kode ini ke file Info.plist<p>
+```dart
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>This app needs to access your location</string>
+```
+
+### Langkah 3: Buat file geolocation.dart
+Tambahkan file baru ini di folder lib project Anda.<p>
+
+### Langkah 4: Buat StatefulWidget
+Buat class LocationScreen di dalam file geolocation.dart<p>
+
+### Langkah 5: Isi kode geolocation.dart
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//e9947082d70bbfbb.png"><p>
+
+> Soal 11<p>
+> Tambahkan nama panggilan Anda pada tiap properti title sebagai identitas pekerjaan Anda.<p>
+**Jawab :** 
+```dart
+appBar: AppBar(
+        title: const Text('Fanesabhirawaning'),
+        backgroundColor: Colors.purple,
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+        ),
+      ),
+```
+ 
+### Langkah 6: Edit main.dart
+Panggil screen baru tersebut di file main Anda seperti berikut.<p>
+```dart
+home: LocationScreen(),
+```
+
+### Langkah 7: Run
+Run project Anda di device atau emulator (bukan browser), maka akan tampil seperti berikut ini.<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//769ef7d3863f2f35.png"><p>
+
+### Langkah 8: Tambahkan animasi loading
+Tambahkan widget loading seperti kode berikut. Lalu hot restart, perhatikan perubahannya.<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//e528461199688c99.png"><p>
+
+> Soal 12
+> - Jika Anda tidak melihat animasi loading tampil, kemungkinan itu berjalan sangat cepat. Tambahkan delay pada method getPosition() dengan kode await Future.delayed(const Duration(seconds: 3));
+> - Apakah Anda mendapatkan koordinat GPS ketika run di browser? Mengapa demikian?
+> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 12".
