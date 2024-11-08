@@ -1,4 +1,4 @@
-**Laporan Praktikum**
+# **Laporan Praktikum**
 # **Pertemuan 12**
 ### **Pemrograman Asynchronous**
 ------
@@ -624,4 +624,43 @@ Hasilnya akan seperti gambar berikut ini.<p>
 <img src="img/soal16.gif"><p>
 
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 16".<p>
+<img src="img/soal16.gif"><p>
+
+# Praktikum 9: Memanfaatkan async/await dengan Widget Dialog
+Pada praktikum ini, Anda akan memanfaatkan widget AlertDialog. Anda bisa manfaatkan widget ini misal untuk memilih operasi Save, Delete, Accept, dan sebagainya.<p>
+
+Setelah Anda menyelesaikan praktikum 8, Anda dapat melanjutkan praktikum 9 ini. Selesaikan langkah-langkah praktikum berikut ini menggunakan editor Visual Studio Code (VS Code) atau Android Studio atau code editor lain kesukaan Anda. Jawablah di laporan praktikum Anda pada setiap soal yang ada di beberapa langkah praktikum ini.<p>
+
+> Perhatian: Diasumsikan Anda telah berhasil menyelesaikan Praktikum 8.
+
+### Langkah 1: Buat file baru navigation_dialog.dart
+Buat file dart baru di folder lib project Anda.<p>
+
+### Langkah 2: Isi kode navigation_dialog.dart
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//f8aa82ec1f684ef7.png">
+
+### Langkah 3: Tambah method async
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//a3094d0b4e110748.png">
+
+### Langkah 4: Panggil method di ElevatedButton
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//ddafc9ca6d33033b.png">
+
+### Langkah 5: Edit main.dart
+Ubah properti home<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//c121e1408898fb65.png">
+
+### Langkah 6: Run
+Coba ganti warna background dengan widget dialog tersebut. Jika terjadi error, silakan diperbaiki. Jika berhasil, akan tampil seperti gambar berikut.<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//9d5e185f3478976f.png">
+
+> Soal 17
+> - Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?
+> - Gantilah 3 warna pada langkah 3 dengan warna favorit Anda!
+> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 17".
+**Jawab:**
+- Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?<p>
+> Ketika Anda menekan tombol "Change Color" dan memilih warna pada dialog, layar akan mengalami perubahan pada warna latar belakang. Ini disebabkan oleh pembaruan nilai warna dalam fungsi _showColorDialog, diikuti dengan pembaruan widget menggunakan setState. Tindakan ini akan memicu pembangunan ulang widget dan mencerminkan perubahan warna yang telah dipilih pada layar.<p>
+- Gantilah 3 warna pada langkah 3 dengan warna favorit Anda!<p>
+<img src="img/soal17.gif"><p>
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 17".<p>
 <img src="img/soal16.gif"><p>
