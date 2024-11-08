@@ -455,11 +455,32 @@ home: LocationScreen(),
 Run project Anda di device atau emulator (bukan browser), maka akan tampil seperti berikut ini.<p>
 <img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//769ef7d3863f2f35.png"><p>
 
+**Jawab**<p>
+<img src="img/imagelangkah7.png"><p>
+
 ### Langkah 8: Tambahkan animasi loading
 Tambahkan widget loading seperti kode berikut. Lalu hot restart, perhatikan perubahannya.<p>
 <img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//e528461199688c99.png"><p>
 
-> Soal 12
-> - Jika Anda tidak melihat animasi loading tampil, kemungkinan itu berjalan sangat cepat. Tambahkan delay pada method getPosition() dengan kode await Future.delayed(const Duration(seconds: 3));
-> - Apakah Anda mendapatkan koordinat GPS ketika run di browser? Mengapa demikian?
-> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 12".
+**Soal 12**<p>
+- Jika Anda tidak melihat animasi loading tampil, kemungkinan itu berjalan sangat cepat. Tambahkan delay pada method getPosition() dengan kode await Future.delayed(const Duration(seconds: 3));
+
+>Jawab : 
+```dart
+Future<Position> getPosition() async {
+    await Geolocator.requestPermission();
+    await Geolocator.isLocationServiceEnabled();
+    await Future.delayed(const Duration(seconds: 3));
+    Position? position = await Geolocator.getCurrentPosition();
+    return position;
+  }
+```
+- Apakah Anda mendapatkan koordinat GPS ketika run di browser? Mengapa demikian?
+
+>Jawab :
+
+>Karena package geolocator juga support di browser, sehingga koordinat GPS juga bisa didapatkan pada browser, beserta izinnya.<p>
+
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 12".<p>
+
+<img src="img/soal12.gif"><p>
