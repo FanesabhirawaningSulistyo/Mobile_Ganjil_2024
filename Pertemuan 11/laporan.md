@@ -346,4 +346,38 @@ final futures = Future.wait<int>([
 > - Jelaskan maksud perbedaan kode langkah 1 dan 4!<p>
 **Jawab**<p>
 > Perbedaan kode langkah 1 dan kode langkah 4 adalah pada penggunaan variabel futureGroup. Pada langkah 1, variabel futureGroup digunakan untuk menampung FutureGroup<int>. FutureGroup adalah sebuah objek yang dapat digunakan untuk mengelompokkan beberapa Future bersama-sama. Sedangkan pada langkah 4, variabel futureGroup diganti dengan Future.wait<int>(). Future.wait<int>() adalah sebuah fungsi yang dapat digunakan untuk menunggu beberapa Future selesai dijalankan.
+<br><br>
 
+# Praktikum 5: Menangani Respon Error pada Async Code
+Ada beberapa teknik untuk melakukan handle error pada code async. Pada praktikum ini Anda akan menggunakan 2 cara, yaitu then() callback dan pola async/await.<p>
+
+Setelah Anda menyelesaikan praktikum 4, Anda dapat melanjutkan praktikum 5 ini. Selesaikan langkah-langkah praktikum berikut ini menggunakan editor Visual Studio Code (VS Code) atau Android Studio atau code editor lain kesukaan Anda. Jawablah di laporan praktikum Anda pada setiap soal yang ada di beberapa langkah praktikum ini.<p>
+
+> Perhatian: Diasumsikan Anda telah berhasil menyelesaikan Praktikum 4.
+
+### Langkah 1: Buka file main.dart
+Tambahkan method ini ke dalam class _FuturePageState<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//2cba66fc6381820e.png">
+
+### Langkah 2: ElevatedButton
+Ganti dengan kode berikut<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//9659bd29ea2724aa.png">
+
+### Langkah 3: Run
+Lakukan run dan klik tombol GO! maka akan menghasilkan seperti gambar berikut.<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//8a644f3bb34dc4fb.png"><p>
+Pada bagian debug console akan melihat teks Complete seperti berikut.<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//b45bbfe7f2b1f61b.png"><p>
+
+> Soal 9<p>
+> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 9".<p>
+**jawab**<p>
+<img src="img/soal9.gif"><p><br>
+<img src="img/image9a.png">
+
+### Langkah 4: Tambah method handleError()
+Tambahkan kode ini di dalam class _FutureStatePage<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//5b01a21f4e2717d3.png">
+
+> Soal 10<p>
+> -Panggil method handleError() tersebut di ElevatedButton, lalu run. Apa hasilnya? Jelaskan perbedaan kode langkah 1 dan 4!<p>

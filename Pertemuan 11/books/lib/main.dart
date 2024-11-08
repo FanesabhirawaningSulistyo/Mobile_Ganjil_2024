@@ -126,6 +126,13 @@ class _FuturePageState extends State<FuturePage> {
     });
   }
 
+  // Praktikum 5
+  Future returnError() async {
+    await Future.delayed(const Duration(seconds: 2));
+    throw Exception('Something terrible happened!');
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +178,21 @@ class _FuturePageState extends State<FuturePage> {
                 // });
 
                 // Praktikum 4
-                returnFG();
+                // returnFG();
+
+                // Praktikum 5
+                returnError()
+                    .then((value) => {
+                          setState(() {
+                            result = 'success';
+                          })
+                        })
+                    .catchError((onError) => {
+                          setState(() {
+                            result = onError.toString();
+                          })
+                        })
+                    .whenComplete(() => print('complete'));
               },
               child: const Text("GO!"),
             ),
