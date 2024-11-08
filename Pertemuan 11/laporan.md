@@ -118,3 +118,81 @@ Lakukan run aplikasi Flutter Anda. Anda akan melihat tampilan akhir seperti gamb
 <p align="left">
 <img src="img/soal3.gif">
 </p>
+
+<br>
+
+# Praktikum 2: Menggunakan await/async untuk menghindari callbacks<p>
+
+Ada alternatif penggunaan Future yang lebih clean, mudah dibaca dan dirawat, yaitu pola async/await. Intinya pada dua kata kunci ini:<p>
+
+- async digunakan untuk menandai suatu method sebagai asynchronous dan itu harus ditambahkan di depan kode function.<p>
+- await digunakan untuk memerintahkan menunggu sampai eksekusi suatu function itu selesai dan mengembalikan sebuah value. Untuk then bisa digunakan pada jenis method apapun, sedangkan await hanya bekerja di dalam method async.<p>
+  
+Berikut ini contoh kode perbedaan Future dengan then dan async/await.<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//7d1cc43f658e2318.png"><p>
+
+Setelah Anda menyelesaikan praktikum 1, Anda dapat melanjutkan praktikum 2 ini. Selesaikan langkah-langkah praktikum berikut ini menggunakan editor Visual Studio Code (VS Code) atau Android Studio atau code editor lain kesukaan Anda. Jawablah di laporan praktikum Anda pada setiap soal yang ada di beberapa langkah praktikum ini.<p>
+
+> Perhatian: Diasumsikan Anda telah berhasil menyelesaikan Praktikum 1.<p>
+
+Pada codelab ini, kita akan menambah kode dari aplikasi books di praktikum sebelumnya.<p>
+
+### Langkah 1: Buka file main.dart
+Tambahkan tiga method berisi kode seperti berikut di dalam class _FuturePageState.<p>
+```dart
+Future<int> returnOneAsync() async {
+  await Future.delayed(const Duration(seconds: 3));
+  return 1;
+}
+
+Future<int> returnTwoAsync() async {
+  await Future.delayed(const Duration(seconds: 3));
+  return 2;
+}
+
+Future<int> returnThreeAsync() async {
+  await Future.delayed(const Duration(seconds: 3));
+  return 3;
+}
+```
+
+### Langkah 2: Tambah method count()
+Lalu tambahkan lagi method ini di bawah ketiga method sebelumnya.<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//5b83c8553b235a3a.png">
+
+### Langkah 3: Panggil count()
+Lakukan comment kode sebelumnya, ubah isi kode onPressed() menjadi seperti berikut.<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//e447e023789e40.png">
+
+
+### Langkah 4: Run
+Akhirnya, run atau tekan F5 jika aplikasi belum running. Maka Anda akan melihat seperti gambar berikut, hasil angka 6 akan tampil setelah delay 9 detik.<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//c031719fe1ee4340.png">
+
+> Soal 4
+- Jelaskan maksud kode langkah 1 dan 2 tersebut!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 4".
+  
+<br>
+
+> **Jawab**
+- **Jelaskan maksud kode langkah 1 dan 2 tersebut!**
+
+>Langkah 1
+>Kode di atas adalah kode Dart yang terdiri dari tiga fungsi asynchronous, yaitu returnOneAsync(), returnTwoAsync(), dan returnThreeAsync(). Ketiga fungsi ini mengembalikan nilai int dan menggunakan Future.delayed() untuk menunda eksekusi selama 3 detik.
+>Berikut adalah penjelasan masing-masing fungsi:
+>- returnOneAsync()
+>Fungsi ini mengembalikan nilai 1 setelah 3 detik.
+>- returnTwoAsync()
+>Fungsi ini mengembalikan nilai 2 setelah 3 detik.
+>- returnThreeAsync()
+>Fungsi ini mengembalikan nilai 3 setelah 3 detik.
+
+>Langkah 2
+>Kode di atas adalah sebuah fungsi asynchronous bernama count() yang digunakan untuk menghitung jumlah dari tiga fungsi asynchronous lainnya, yaitu returnOneAsync(), returnTwoAsync(), dan returnThreeAsync(). Fungsi count() ini mengembalikan Future, yang berarti bahwa eksekusinya tidak akan memblokir kode lainnya.
+
+- **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 4".**
+<p align="left">
+<img src="img/soal4.gif">
+</p>
+
