@@ -372,12 +372,19 @@ Pada bagian debug console akan melihat teks Complete seperti berikut.<p>
 > Soal 9<p>
 > - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 9".<p>
 **jawab**<p>
-<img src="img/soal9.gif"><p><br>
-<img src="img/image9a.png">
+<img src="img/soal9,10.gif"><p><br>
+<img src="img/image9,10a.png">
 
 ### Langkah 4: Tambah method handleError()
 Tambahkan kode ini di dalam class _FutureStatePage<p>
 <img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//5b01a21f4e2717d3.png">
 
 > Soal 10<p>
-> -Panggil method handleError() tersebut di ElevatedButton, lalu run. Apa hasilnya? Jelaskan perbedaan kode langkah 1 dan 4!<p>
+> - Panggil method handleError() tersebut di ElevatedButton, lalu run. Apa hasilnya? Jelaskan perbedaan kode langkah 1 dan 4!<p>
+**Jawab**<p>
+<img src="img/soal9,10.gif"><p><br>
+<img src="img/image9,10a.png"><p>
+
+>Perbedaan kode langkah 1 dan kode langkah 4 adalah pada penanganan error. Pada langkah 1, method returnError() tidak menangani error yang terjadi. Jika error terjadi, maka method tersebut akan berhenti dan tidak mengembalikan nilai apa pun.
+
+>Sedangkan pada langkah 4, method handleError() menangani error yang terjadi dengan menggunakan try-catch-finally. Pada try block, method handleError() mencoba untuk menjalankan method returnError(). Jika error terjadi, maka try block akan berhenti dan error akan ditangkap oleh catch block. Pada catch block, method handleError() akan menampilkan error ke layar menggunakan print(). Finally block akan selalu dijalankan, terlepas dari apakah ada error yang terjadi atau tidak.

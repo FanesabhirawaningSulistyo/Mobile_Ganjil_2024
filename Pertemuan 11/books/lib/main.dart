@@ -131,8 +131,17 @@ class _FuturePageState extends State<FuturePage> {
     await Future.delayed(const Duration(seconds: 2));
     throw Exception('Something terrible happened!');
   }
-
-
+   Future handleError() async {
+    try {
+      await returnError();
+    } catch (e) {
+      setState(() {
+        result = e.toString();
+      });
+    } finally {
+      print('Complete');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -181,18 +190,19 @@ class _FuturePageState extends State<FuturePage> {
                 // returnFG();
 
                 // Praktikum 5
-                returnError()
-                    .then((value) => {
-                          setState(() {
-                            result = 'success';
-                          })
-                        })
-                    .catchError((onError) => {
-                          setState(() {
-                            result = onError.toString();
-                          })
-                        })
-                    .whenComplete(() => print('complete'));
+                // returnError()
+                //     .then((value) => {
+                //           setState(() {
+                //             result = 'success';
+                //           })
+                //         })
+                //     .catchError((onError) => {
+                //           setState(() {
+                //             result = onError.toString();
+                //           })
+                //         })
+                //     .whenComplete(() => print('complete'));
+                handleError();
               },
               child: const Text("GO!"),
             ),
