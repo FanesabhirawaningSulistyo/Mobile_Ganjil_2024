@@ -614,4 +614,14 @@ Lakukan run, jika terjadi error silakan diperbaiki.<p>
 > - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 16".
 
 Hasilnya akan seperti gambar berikut ini.<p>
-<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//b363de9b154b9314.png">
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//b363de9b154b9314.png"><p>
+
+**Jawab:**
+- Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?<p>
+> Ketika tombol ditekan, warnanya akan berubah sesuai dengan warna yang telah ditetapkan pada widget ElevatedButton() di class navigation_second.dart. Hal ini dikarenakan setiap tombol memiliki fungsi Navigation.pop() yang memiliki parameter berupa context dan warna yang telah ditetapkan. Oleh karena itu, setiap tombol yang ditekan akan menampilkan warna yang berbeda-beda sesuai dengan nilai variabel warna.<p>
+
+- Gantilah 3 warna pada langkah 5 dengan warna favorit Anda!<p>
+<img src="img/soal16.gif"><p>
+
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 16".<p>
+<img src="img/soal16.gif"><p>
