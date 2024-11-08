@@ -92,7 +92,10 @@ Tambahkan method ini ke dalam class \_FuturePageState yang berguna untuk mengamb
 
 > - Kemudian cobalah akses di browser URI tersebut dengan lengkap seperti ini. Jika menampilkan data JSON, maka Anda telah berhasil. Lakukan capture milik Anda dan tulis di README pada laporan praktikum. Lalu lakukan commit dengan pesan "W12: Soal 2".<p>
 
-<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//d441815f1bdf8e8.png">
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//d441815f1bdf8e8.png"><p>
+<br>
+> **Jawab**
+> <img src="img/image1.png">
 
 ### Langkah 5: Tambah kode di ElevatedButton
 

@@ -33,25 +33,28 @@ class FuturePage extends StatefulWidget {
 class _FuturePageState extends State<FuturePage> {
   String result = '';
 
+    Future<Response> getData() async {
+    const authority = 'www.googleapis.com';
+    const path = '/books/v1/volumes/2MA8DwAAQBAJ';
+    Uri url = Uri.https(authority, path);
+    return http.get(url);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      title: const Text('Back from the Future Fanesa'),
-      backgroundColor: Colors.purple,
-      titleTextStyle: const TextStyle(
-        color: Colors.white,
+        title: const Text('Back from the Future Fanesa'),
+        backgroundColor: Colors.purple,
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+        ),
       ),
-    ),
-
       body: Center(
         child: Column(
           children: [
             const Spacer(),
-            ElevatedButton(
-              child: const Text('GO!'),
-              onPressed: () {}
-            ),
+            ElevatedButton(child: const Text('GO!'), onPressed: () {}),
             const Spacer(),
             Text(result),
             const Spacer(),
