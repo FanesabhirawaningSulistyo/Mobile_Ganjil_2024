@@ -550,3 +550,68 @@ else if (snapshot.connectionState == ConnectionState.done) {
 
 - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 14".<p>
 <img src="img/soal12,13,14.gif"><p>
+
+
+<br><br>
+
+## Praktikum 8: Navigation route dengan Future Function
+Praktikum kali ini Anda akan melihat manfaat Future untuk Navigator dalam transformasi Route menjadi sebuah function async. Anda akan melakukan push screen baru dan fungsi await menunggu data untuk melakukan update warna background pada screen.<p>
+
+Setelah Anda menyelesaikan praktikum 7, Anda dapat melanjutkan praktikum 8 ini. Selesaikan langkah-langkah praktikum berikut ini menggunakan editor Visual Studio Code (VS Code) atau Android Studio atau code editor lain kesukaan Anda. Jawablah di laporan praktikum Anda pada setiap soal yang ada di beberapa langkah praktikum ini.<p>
+
+> Perhatian: Diasumsikan Anda telah berhasil menyelesaikan Praktikum 7.
+
+### Langkah 1: Buat file baru navigation_first.dart
+Buatlah file baru ini di project lib Anda.<p>
+
+### Langkah 2: Isi kode navigation_first.dart
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//94d4517fe205d4c7.png">
+
+> Soal 15
+> - Tambahkan nama panggilan Anda pada tiap properti title sebagai identitas pekerjaan Anda.
+> - Silakan ganti dengan warna tema favorit Anda.
+
+**Jawab:**
+
+```dart
+appBar: AppBar(
+        title: const Text('Fanesabhirawaning'),
+        backgroundColor: Colors.purple.shade300,
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+        ),
+      ),
+```
+
+### Langkah 3: Tambah method di class_NavigationFirstState
+Tambahkan method ini.<p>
+```dart
+Future _navigateAndGetColor(BuildContext context) async {
+   color = await Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const NavigationSecond()),) ?? Colors.blue;
+   setState(() {});
+   });
+}
+```
+
+### Langkah 4: Buat file baru navigation_second.dart
+Buat file baru ini di project lib Anda. Silakan jika ingin mengelompokkan view menjadi satu folder dan sesuaikan impor yang dibutuhkan.<p>
+
+### Langkah 5: Buat class NavigationSecond dengan StatefulWidget
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//faf70be0b0b003fd.png">
+
+### Langkah 6: Edit main.dart
+Lakukan edit properti home.<p>
+```dart
+home: const NavigationFirst(),
+```
+
+### Langkah 8: Run
+Lakukan run, jika terjadi error silakan diperbaiki.<p>
+> Soal 16
+> - Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?
+> - Gantilah 3 warna pada langkah 5 dengan warna favorit Anda!
+> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W12: Soal 16".
+
+Hasilnya akan seperti gambar berikut ini.<p>
+<img src="https://jti-polinema.github.io/flutter-codelab/12-async/img//b363de9b154b9314.png">
