@@ -135,7 +135,9 @@ Lakukan running pada aplikasi Flutter Anda, maka akan terlihat berubah warna bac
 <img src="https://jti-polinema.github.io/flutter-codelab/13-state-streams-bloc/img//eeea38d307556be2.png">
 
 > **Soal 4**
-> - Capture hasil praktikum Anda berupa GIF dan lampirkan di `README`.
+> - Capture hasil praktikum Anda berupa GIF dan lampirkan di `README`.<p>
+> **Jawab**<p>
+<img src="img/soal4.gif">
 > - Lakukan commit hasil jawaban Soal 4 dengan pesan "W12: Jawaban Soal 4"
 
 ### Langkah 13: Ganti isi method `changeColor()`
