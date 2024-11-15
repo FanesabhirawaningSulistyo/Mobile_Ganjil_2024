@@ -401,8 +401,19 @@ Saat Anda menekan button ini, akan muncul pesan di Debug Console seperti berikut
 <img src="https://jti-polinema.github.io/flutter-codelab/13-state-streams-bloc/img//b051d83d7e5d963a.png">
 
 > **Soal 9**
-> - Jelaskan maksud kode langkah 2, 6, dan 8 tersebut!
-> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+> - Jelaskan maksud kode langkah 2, 6, dan 8 tersebut!<p>
+> **Jawab**<p>
+>Langkah 2<p>
+>Pada langkah ini, kita menambahkan kode untuk membuat objek NumberStream dan NumberStreamController. Objek NumberStream akan digunakan untuk menghasilkan stream integer secara acak. Objek NumberStreamController akan digunakan untuk mengontrol stream tersebut.<p>
+>Langkah 6<p>
+>Pada langkah ini, kita menambahkan kode untuk membatalkan subscription di dispose(). Subscription ini harus dibatalkan untuk mencegah memory leak.<p>
+>Langkah 8<p>
+>Pada langkah ini, kita menambahkan kode untuk memeriksa apakah stream telah ditutup sebelum menambahkan data ke stream. Jika stream telah ditutup, kita akan mengubah nilai variabel lastNumber dengan nilai -1.<p>
+
+> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.<p>
+> > **Jawab**<p>
+<img src="img/soal9.gif">
+
 > - Lalu lakukan commit dengan pesan "**W12: Jawaban Soal 9**".
 
 <br><br>
