@@ -245,8 +245,17 @@ Lakukan running pada aplikasi Flutter Anda, maka akan terlihat seperti gambar be
 <img src="https://jti-polinema.github.io/flutter-codelab/13-state-streams-bloc/img//2615c42c4b04287f.png">
 
 > **Soal 6**
-> - Jelaskan maksud kode langkah 8 dan 10 tersebut!
-> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+> - Jelaskan maksud kode langkah 8 dan 10 tersebut!<p>
+> **Jawab**<p>
+>Langkah 8: Edit initState()
+>Metode initState() dipanggil ketika widget pertama kali dibuat. Dalam langkah ini, kode sedang membuat objek NumberStream dan objek StreamController. StreamController digunakan untuk mengontrol aliran data yang dikeluarkan oleh NumberStream. Aliran kemudian didengarkan, dan metode setState() dipanggil setiap kali peristiwa baru dikeluarkan. Ini memastikan bahwa widget diperbarui setiap kali nomor terbaru diterima.<p>
+>Langkah 10: Tambah method addRandomNumber()
+>Metode addRandomNumber() digunakan untuk menambahkan nomor acak ke aliran data. Metode ini pertama-tama membuat objek Random dan kemudian memanggil metode nextInt() untuk mendapatkan nomor acak antara 0 dan 9. Nomor acak kemudian ditambahkan ke aliran menggunakan metode addNumberToSink().
+
+
+> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.<p>
+> **Jawab**<p>
+<img src="img/soal6.gif">
 > - Lalu lakukan commit dengan pesan "**W12: Jawaban Soal 6**".
 
 ### Langkah 13: Buka `stream.dart`
