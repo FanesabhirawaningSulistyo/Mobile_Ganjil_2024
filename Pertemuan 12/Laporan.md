@@ -292,7 +292,6 @@ void addRandomNumber() {
 > - Lalu lakukan commit dengan pesan "**W12: Jawaban Soal 7**".
 
 
-Berikut adalah panduan praktikum dalam format Markdown untuk Praktikum 3: Injeksi data ke streams.
 <br><br>
 
 # Praktikum 3: Injeksi Data ke Streams
@@ -326,8 +325,18 @@ Terakhir, jalankan aplikasi dengan menekan **F5** atau **run**. Jika aplikasi su
 <img src="https://jti-polinema.github.io/flutter-codelab/13-state-streams-bloc/img//c599643509de04b3.png">
 
 > **Soal 8**
-> - Jelaskan maksud kode langkah 1-3 tersebut!
-> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+> - Jelaskan maksud kode langkah 1-3 tersebut!<p>
+> **Jawab**<p>
+>Langkah 1<p>
+>Pada langkah ini, kita menambahkan variabel baru bernama transformer di dalam class _StreamHomePageState. Variabel ini akan digunakan untuk menyimpan objek StreamTransformer.<p>
+>Langkah 2<p>
+>Pada langkah ini, kita menambahkan kode untuk membuat objek StreamTransformer. Objek ini akan digunakan untuk mengubah data yang diterima dari stream. Dalam kasus ini, kita akan mengubah data integer menjadi integer yang dikalikan dengan 10.<p>
+>Langkah 3<p>
+>Pada langkah ini, kita melakukan edit kode di initState(). Kita menambahkan kode untuk menggunakan objek transformer untuk mengubah data yang diterima dari stream.<p>
+
+> - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.<p>
+> **Jawab**<p>
+<img src="img/soal8.gif">
 > - Lalu lakukan commit dengan pesan "**W12: Jawaban Soal 8**".
 <br><br>
 

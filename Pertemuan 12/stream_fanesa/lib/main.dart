@@ -37,6 +37,7 @@ class _StreamHomepageState extends State<StreamHomepage> {
   int lastNumber = 0;
   late StreamController numberStreamController;
   late NumberStream numberStream;
+  late StreamTransformer transformer;
 
   void changeColor() async {
     // Praktikum 1
@@ -54,16 +55,16 @@ class _StreamHomepageState extends State<StreamHomepage> {
     // Praktikum 2
     numberStream = NumberStream();
     numberStreamController = numberStream.controller;
-    Stream stream = numberStreamController.stream;
-    stream.listen((event) {
-      setState(() {
-        lastNumber = event;
-      });
-      }).onError((error) {
-      setState(() {
-        lastNumber = -1;
-      });
-    });
+    // Stream stream = numberStreamController.stream;
+    // stream.listen((event) {
+    //   setState(() {
+    //     lastNumber = event;
+    //   });
+    // }).onError((error) {
+    //   setState(() {
+    //     lastNumber = -1;
+    //   });
+    // });
   }
 
   void addRandomNumber() {
@@ -79,6 +80,25 @@ class _StreamHomepageState extends State<StreamHomepage> {
 
     colorStream = ColorStream();
     changeColor();
+    transformer = StreamTransformer<int, int>.fromHandlers(
+      handleData: (value, sink) {
+        sink.add(value * 10);
+      },
+      handleError: (error, stackTrace, sink) {
+        sink.add(-1);
+      },
+      handleDone: (sink) => sink.close(),
+    );
+    Stream stream = numberStreamController.stream;
+    stream.transform(transformer).listen((event) {
+      setState(() {
+        lastNumber = event;
+      });
+    }).onError((error) {
+      setState(() {
+        lastNumber = -1;
+      });
+    });
   }
 
   @override
