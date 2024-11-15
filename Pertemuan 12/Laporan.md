@@ -100,8 +100,12 @@ yield* Stream.periodic(
 ```
 
 > **Soal 3**
-> - Jelaskan fungsi keyword `yield*` pada kode tersebut!
-> - Apa maksud isi perintah kode tersebut?
+> - Jelaskan fungsi keyword `yield*` pada kode tersebut!<P>
+> **Jawab**<p>
+>Fungsi keyword yield* pada kode tersebut adalah untuk menghasilkan nilai dari stream Stream.periodic. Keyword yield* memungkinkan kita untuk menghasilkan nilai dari stream lain atau iterable.<p>
+> - Apa maksud isi perintah kode tersebut?<p>
+> **Jawab**<p>
+> Isi perintah kode tersebut adalah untuk menghasilkan stream warna yang berganti setiap satu detik. Stream ini dihasilkan dengan cara menghasilkan nilai dari stream Stream.periodic yang setiap detiknya menghasilkan nilai integer. Nilai integer tersebut kemudian digunakan untuk menentukan indeks warna yang akan dihasilkan.
 > - Lakukan commit hasil jawaban Soal 3 dengan pesan "W12: Jawaban Soal 3"
 
 ### Langkah 7: Buka `main.dart`
