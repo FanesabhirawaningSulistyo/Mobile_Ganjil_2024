@@ -274,8 +274,21 @@ Lakukan *comment* pada dua baris kode berikut, lalu ketik kode seperti berikut i
 <img src="https://jti-polinema.github.io/flutter-codelab/13-state-streams-bloc/img//3ad742a1b10700db.png">
 
 > **Soal 7**
-> - Jelaskan maksud kode langkah 13 sampai 15 tersebut!
-> - Kembalikan kode seperti semula pada Langkah 15, comment `addError()` agar Anda dapat melanjutkan ke praktikum 3 berikutnya.
+> - Jelaskan maksud kode langkah 13 sampai 15 tersebut!<p>
+> **Jawab**<p>
+>Pada langkah 13, kita menambahkan method addError() ke kelas Stream. Method ini digunakan untuk menambahkan error ke stream.<p>
+>Pada langkah 15, kita mengedit method addRandomNumber(). Kita mengomentari dua baris kode yang sebelumnya digunakan untuk menambahkan random number ke stream. Kemudian, kita menambahkan kode baru untuk menambahkan error ke stream.<p>
+
+> - Kembalikan kode seperti semula pada Langkah 15, comment `addError()` agar Anda dapat melanjutkan ke praktikum 3 berikutnya.<p>
+> **Jawab**
+```dart
+void addRandomNumber() {
+    Random random = Random();
+    int myNum = random.nextInt(10);
+    numberStream.addNumberToSink(myNum);
+    // numberStream.addError();
+  }
+```
 > - Lalu lakukan commit dengan pesan "**W12: Jawaban Soal 7**".
 
 
