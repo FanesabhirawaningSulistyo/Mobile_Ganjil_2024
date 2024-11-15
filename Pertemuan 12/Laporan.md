@@ -12,9 +12,6 @@
 >Jurusan : Teknologi Informasi<p>
 
 <br>
-Here's the adjusted text with images sourced from the specified URLs:
-
----
 
 # Praktikum 1: Dart Streams
 
@@ -62,7 +59,8 @@ Buat file baru di folder `lib` project Anda. Lalu isi dengan kode berikut.<br>
 
 ### Langkah 4: Tambah variabel `colors`
 Tambahkan variabel di dalam class `ColorStream` seperti berikut.<br>
-<img src="https://jti-polinema.github.io/flutter-codelab/13-state-streams-bloc/img//56185835fefa3f26.png">
+
+<img src="img/image.png">
 
 > **Soal 2**
 > - Tambahkan 5 warna lainnya sesuai keinginan Anda pada variabel `colors` tersebut.<p>
@@ -616,8 +614,20 @@ Tambahkan kode ini di dalam `class _RandomScreenState`.
 Jalankan aplikasi. Setiap kali menekan tombol **FloatingActionButton**, angka acak antara 0 sampai 9 akan tampil.
 
 > **Soal 13**
-> - Jelaskan maksud praktikum ini dan letak konsep pola BLoC-nya.
-> - Capture hasil praktikum Anda dalam bentuk GIF dan lampirkan di README.
+> - Jelaskan maksud praktikum ini dan letak konsep pola BLoC-nya.<p>
+> **Jawab**<p>
+>1. Class RandomNumberBloc:<p>
+>RandomNumberBloc adalah implementasi BLoC yang menggunakan dua StreamController: satu untuk mengontrol input events (_generateRandomController), dan satu untuk mengontrol output (_randomNumberController). _generateRandomController digunakan untuk mengirim events yang akan memicu pembangkitan nomor acak, sedangkan _randomNumberController mengontrol stream output yang berisi nomor acak yang dihasilkan.<p>
+>2. Kelas MyHomePage:<p>
+>MyHomePage merupakan antarmuka pengguna sederhana yang tidak secara langsung terlibat dalam logika bisnis. Ini tidak menyertakan logika khusus terkait BLoC. Namun, dalam pengembangan aplikasi yang lebih kompleks, logika bisnis dapat dipindahkan ke dalam BLoC untuk menjaga kesatuan dan pemisahan tanggung jawab.<p>
+>3. Class RandomScreen:<p>
+>RandomScreen adalah antarmuka pengguna yang menggunakan RandomNumberBloc. State dari widget ini dikendalikan oleh stream yang dihasilkan oleh _bloc.randomNumber. Setiap kali event dikirim melalui _bloc.generateRandom, nomor acak baru dihasilkan dan diperbarui di UI. Dengan memisahkan logika bisnis ke dalam RandomNumberBloc, antarmuka pengguna dapat fokus pada tampilan dan merespons perubahan state.<p>
+>4. Pemanggilan BLoC di main.dart:<p>
+>BLoC (RandomNumberBloc) diinisialisasi dan dimiliki oleh _RandomScreenState. Pemanggilan _bloc.generateRandom.add(null) pada tombol tindakan antarmuka pengguna memicu pembangkitan nomor acak melalui BLoC.<p>
+
+> - Capture hasil praktikum Anda dalam bentuk GIF dan lampirkan di README.<p>
+> **Jawab**<p>
+<img src="img/soal13.gif"><p>
 > - Lakukan commit dengan pesan "**W12: Jawaban Soal 13**".
 
 
