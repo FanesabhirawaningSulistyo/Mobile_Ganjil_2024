@@ -411,8 +411,9 @@ Saat Anda menekan button ini, akan muncul pesan di Debug Console seperti berikut
 >Pada langkah ini, kita menambahkan kode untuk memeriksa apakah stream telah ditutup sebelum menambahkan data ke stream. Jika stream telah ditutup, kita akan mengubah nilai variabel lastNumber dengan nilai -1.<p>
 
 > - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.<p>
-> > **Jawab**<p>
-<img src="img/soal9.gif">
+> **Jawab**<p>
+<img src="img/soal9.gif"><p>
+<img src="img/soal9a.png"><p>
 
 > - Lalu lakukan commit dengan pesan "**W12: Jawaban Soal 9**".
 
@@ -441,7 +442,11 @@ Jalankan aplikasi, dan akan muncul error seperti berikut.
 
 <img src="https://jti-polinema.github.io/flutter-codelab/13-state-streams-bloc/img//f4b1267b6e8dd7a8.png">
 
-> **Soal 10**: Jelaskan mengapa error tersebut bisa terjadi?
+> **Soal 10**: Jelaskan mengapa error tersebut bisa terjadi?<p>
+> **Jawab**<p> 
+> <img src="img\soal10.png">
+>Kesalahan tersebut terjadi ketika mencoba untuk menambahkan atau membuat dua langganan pada stream yang sama, tanpa membatalkan langganan sebelumnya. Hal tersebut terjadi ketika inisialisasi langganan2 pada metode initState() karena sudah ada inisialisasi langganan untuk menangani stream yang sama pada satu waktu.
+
 
 ### Langkah 4: Set Broadcast Stream
 Untuk memungkinkan multiple subscriptions, edit `initState` agar stream menjadi broadcast seperti pada kode berikut.
@@ -459,8 +464,15 @@ Tekan tombol **New Random Number** beberapa kali. Angka yang ditampilkan akan be
 <img src="https://jti-polinema.github.io/flutter-codelab/13-state-streams-bloc/img//bbd6d5897fbcd346.png">
 
 > **Soal 11**
-> - Jelaskan mengapa angka terus bertambah dua kali untuk setiap subscription.
-> - Capture hasil praktikum Anda dalam bentuk GIF dan lampirkan di README.
+> - Jelaskan mengapa angka terus bertambah dua kali untuk setiap subscription.<p>
+> **Jawab**<p>
+>Saat tombol "New Random Number" ditekan, maka akan menghasilkan dua angka random yang sama. Angka-angka tersebut merupakan output dari stream yang dipanggil oleh objek subscription dan subscription2. Stream tersebut akan mengembalikan nilai berupa event (angka random) yang dipisahkan dengan tanda "-".<p>
+>Saat tombol "Stop Stream" ditekan, maka akan menghentikan langganan terhadap stream. Hal ini menyebabkan stream tidak lagi bisa mengeluarkan output, meskipun tombol "New Random Number" ditekan.<p>
+> - Capture hasil praktikum Anda dalam bentuk GIF dan lampirkan di README.<p>
+> **Jawab**<p>
+<img src="img/soal11.gif"><p>
+<img src="img/soal9a.png">
+
 > - Lalu lakukan commit dengan pesan "**W12: Jawaban Soal 10,11**".
 <br><br>
 
