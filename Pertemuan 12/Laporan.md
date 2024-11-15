@@ -54,7 +54,7 @@ return MaterialApp(
       home: const StreamHomepage(),
     );
 ```
-> - Lakukan commit hasil jawaban Soal 1 dengan pesan "W13: Jawaban Soal 1"
+> - Lakukan commit hasil jawaban Soal 1 dengan pesan "W12: Jawaban Soal 1"
 
 ### Langkah 3: Buat file baru `stream.dart`
 Buat file baru di folder `lib` project Anda. Lalu isi dengan kode berikut.<br>
@@ -65,8 +65,25 @@ Tambahkan variabel di dalam class `ColorStream` seperti berikut.<br>
 <img src="https://jti-polinema.github.io/flutter-codelab/13-state-streams-bloc/img//56185835fefa3f26.png">
 
 > **Soal 2**
-> - Tambahkan 5 warna lainnya sesuai keinginan Anda pada variabel `colors` tersebut.
-> - Lakukan commit hasil jawaban Soal 2 dengan pesan "W13: Jawaban Soal 2"
+> - Tambahkan 5 warna lainnya sesuai keinginan Anda pada variabel `colors` tersebut.<p>
+> **Jawab**
+```dart
+class ColorStream {
+  final List<Color> colors = [
+    Colors.blueGrey,
+    Colors.amber,
+    Colors.deepPurple,
+    Colors.lightBlue,
+    Colors.teal,
+    Colors.pink,
+    Colors.red,
+    Colors.orange,
+    Colors.green,
+    Colors.blue.shade900,
+  ];
+}
+```
+> - Lakukan commit hasil jawaban Soal 2 dengan pesan "W12: Jawaban Soal 2"
 
 ### Langkah 5: Tambah method `getColors()`
 Di dalam class `ColorStream`, ketik method seperti kode berikut. Perhatikan tanda bintang di akhir keyword `async*` (ini digunakan untuk melakukan `Stream` data).<br>
@@ -85,7 +102,7 @@ yield* Stream.periodic(
 > **Soal 3**
 > - Jelaskan fungsi keyword `yield*` pada kode tersebut!
 > - Apa maksud isi perintah kode tersebut?
-> - Lakukan commit hasil jawaban Soal 3 dengan pesan "W13: Jawaban Soal 3"
+> - Lakukan commit hasil jawaban Soal 3 dengan pesan "W12: Jawaban Soal 3"
 
 ### Langkah 7: Buka `main.dart`
 Ketik kode impor file ini pada file `main.dart`:
@@ -115,7 +132,7 @@ Lakukan running pada aplikasi Flutter Anda, maka akan terlihat berubah warna bac
 
 > **Soal 4**
 > - Capture hasil praktikum Anda berupa GIF dan lampirkan di `README`.
-> - Lakukan commit hasil jawaban Soal 4 dengan pesan "W13: Jawaban Soal 4"
+> - Lakukan commit hasil jawaban Soal 4 dengan pesan "W12: Jawaban Soal 4"
 
 ### Langkah 13: Ganti isi method `changeColor()`
 Anda boleh comment atau hapus kode sebelumnya, lalu ketik kode seperti berikut.<br>
@@ -123,7 +140,7 @@ Anda boleh comment atau hapus kode sebelumnya, lalu ketik kode seperti berikut.<
 
 > **Soal 5**
 > - Jelaskan perbedaan menggunakan `listen` dan `await for` (langkah 9)!
-> - Lakukan commit hasil jawaban Soal 5 dengan pesan "W13: Jawaban Soal 5"
+> - Lakukan commit hasil jawaban Soal 5 dengan pesan "W12: Jawaban Soal 5"
 
 > **Catatan**: Stream di Flutter memiliki fitur yang powerful untuk menangani data secara async. Stream dapat dimanfaatkan pada skenario dunia nyata seperti real-time messaging, unggah dan unduh file, tracking lokasi user, bekerja dengan data sensor IoT, dan lain sebagainya.
 
@@ -214,7 +231,7 @@ Lakukan running pada aplikasi Flutter Anda, maka akan terlihat seperti gambar be
 > **Soal 6**
 > - Jelaskan maksud kode langkah 8 dan 10 tersebut!
 > - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
-> - Lalu lakukan commit dengan pesan "**W13: Jawaban Soal 6**".
+> - Lalu lakukan commit dengan pesan "**W12: Jawaban Soal 6**".
 
 ### Langkah 13: Buka `stream.dart`
 Tambahkan method berikut ini.
@@ -234,7 +251,7 @@ Lakukan *comment* pada dua baris kode berikut, lalu ketik kode seperti berikut i
 > **Soal 7**
 > - Jelaskan maksud kode langkah 13 sampai 15 tersebut!
 > - Kembalikan kode seperti semula pada Langkah 15, comment `addError()` agar Anda dapat melanjutkan ke praktikum 3 berikutnya.
-> - Lalu lakukan commit dengan pesan "**W13: Jawaban Soal 7**".
+> - Lalu lakukan commit dengan pesan "**W12: Jawaban Soal 7**".
 
 
 Berikut adalah panduan praktikum dalam format Markdown untuk Praktikum 3: Injeksi data ke streams.
@@ -273,7 +290,7 @@ Terakhir, jalankan aplikasi dengan menekan **F5** atau **run**. Jika aplikasi su
 > **Soal 8**
 > - Jelaskan maksud kode langkah 1-3 tersebut!
 > - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
-> - Lalu lakukan commit dengan pesan "**W13: Jawaban Soal 8**".
+> - Lalu lakukan commit dengan pesan "**W12: Jawaban Soal 8**".
 <br><br>
 
 # Praktikum 4: Subscribe ke Stream Events
@@ -339,7 +356,7 @@ Saat Anda menekan button ini, akan muncul pesan di Debug Console seperti berikut
 > **Soal 9**
 > - Jelaskan maksud kode langkah 2, 6, dan 8 tersebut!
 > - Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
-> - Lalu lakukan commit dengan pesan "**W13: Jawaban Soal 9**".
+> - Lalu lakukan commit dengan pesan "**W12: Jawaban Soal 9**".
 
 <br><br>
 
@@ -386,7 +403,7 @@ Tekan tombol **New Random Number** beberapa kali. Angka yang ditampilkan akan be
 > **Soal 11**
 > - Jelaskan mengapa angka terus bertambah dua kali untuk setiap subscription.
 > - Capture hasil praktikum Anda dalam bentuk GIF dan lampirkan di README.
-> - Lalu lakukan commit dengan pesan "**W13: Jawaban Soal 10,11**".
+> - Lalu lakukan commit dengan pesan "**W12: Jawaban Soal 10,11**".
 <br><br>
 
 # Praktikum 6: StreamBuilder
@@ -441,7 +458,7 @@ Jalankan aplikasi, dan setiap detik akan muncul angka baru pada tampilan seperti
 > **Soal 12**
 > - Jelaskan maksud kode pada langkah 3 dan 7.
 > - Capture hasil praktikum Anda dalam bentuk GIF dan lampirkan di README.
-> - Lakukan commit dengan pesan "**W13: Jawaban Soal 12**".
+> - Lakukan commit dengan pesan "**W12: Jawaban Soal 12**".
 
 <br><br>
 
@@ -525,6 +542,6 @@ Jalankan aplikasi. Setiap kali menekan tombol **FloatingActionButton**, angka ac
 > **Soal 13**
 > - Jelaskan maksud praktikum ini dan letak konsep pola BLoC-nya.
 > - Capture hasil praktikum Anda dalam bentuk GIF dan lampirkan di README.
-> - Lakukan commit dengan pesan "**W13: Jawaban Soal 13**".
+> - Lakukan commit dengan pesan "**W12: Jawaban Soal 13**".
 
 
