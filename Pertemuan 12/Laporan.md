@@ -526,8 +526,14 @@ Jalankan aplikasi, dan setiap detik akan muncul angka baru pada tampilan seperti
 <img src="https://jti-polinema.github.io/flutter-codelab/13-state-streams-bloc/img//7ac5b7804a489a0e.png">
 
 > **Soal 12**
-> - Jelaskan maksud kode pada langkah 3 dan 7.
-> - Capture hasil praktikum Anda dalam bentuk GIF dan lampirkan di README.
+> - Jelaskan maksud kode pada langkah 3 dan 7.<p>
+> **Jawab**<p>
+>Langkah 3 melibatkan pembuatan class NumberStream(), yang mencakup metode getNumbers() untuk menghasilkan stream yang berisi angka-angka acak. Stream ini diperbarui setiap 1 detik.<p>
+>Sementara itu, Langkah 7 menunjukkan penggunaan kode untuk membuat antarmuka pengguna (UI) yang dapat menampilkan nilai dari stream secara real-time. Untuk mencapai ini, digunakan StreamBuilder, yang secara otomatis memperbarui antarmuka setiap kali ada perubahan dalam stream. Perubahan ini dapat berupa perubahan nilai atau munculnya error. Dalam kasus terjadinya error, pesan 'Error!' akan ditampilkan. Jika tidak ada error dan data diterima dari stream, angka acak akan ditampilkan dengan ukuran font setara dengan 96. Namun, jika tidak ada data yang diterima, antarmuka akan menampilkan widget kosong.<p>
+
+> - Capture hasil praktikum Anda dalam bentuk GIF dan lampirkan di README.<p>
+> **Jawab**<p>
+> <img src="img/soal12.gif">
 > - Lakukan commit dengan pesan "**W12: Jawaban Soal 12**".
 
 <br><br>
