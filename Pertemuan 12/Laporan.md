@@ -145,14 +145,24 @@ Anda boleh comment atau hapus kode sebelumnya, lalu ketik kode seperti berikut.<
 <img src="https://jti-polinema.github.io/flutter-codelab/13-state-streams-bloc/img//cad95b6e412a09ea.png">
 
 > **Soal 5**
-> - Jelaskan perbedaan menggunakan `listen` dan `await for` (langkah 9)!
+> - Jelaskan perbedaan menggunakan `listen` dan `await for` (langkah 9)!<p>
+> **Jawab**<p>
+>**Listen:**
+>1. Sifat Sinkronus-Asinkronus: Metode listen bersifat asinkronus, yang berarti bahwa eksekusi program dapat melanjutkan ke baris kode berikutnya tanpa menunggu pengiriman data ke stream selesai.
+>2. Fleksibilitas Handling: Anda dapat menggunakan metode listen untuk menentukan handler fungsi yang akan dijalankan setiap kali ada perubahan pada stream.
+>3. Non-blocking: Penggunaan listen memungkinkan eksekusi program untuk melanjutkan ke baris berikutnya tanpa harus menunggu setiap data diambil dari stream.<p>
+> **Await for:**
+>1. Sifat Sinkronus: Metode await for bersifat sinkronus, yang berarti bahwa eksekusi program akan tetap menunggu hingga ada data yang tersedia di stream sebelum melanjutkan ke baris kode berikutnya.
+>2. Penggunaan Iterator: Penggunaan await for mirip dengan penggunaan iterator untuk mengonsumsi nilai dari stream secara satu per satu.
+>3. Blocking: Penggunaan await for akan memblokir eksekusi program sampai data tersedia di stream atau stream ditutup.
+
 > - Lakukan commit hasil jawaban Soal 5 dengan pesan "W12: Jawaban Soal 5"
+
+<br>
 
 > **Catatan**: Stream di Flutter memiliki fitur yang powerful untuk menangani data secara async. Stream dapat dimanfaatkan pada skenario dunia nyata seperti real-time messaging, unggah dan unduh file, tracking lokasi user, bekerja dengan data sensor IoT, dan lain sebagainya.
 
---- 
 
-This follows your instructions and uses images hosted on the jti-polinema site. Let me know if you'd like further adjustments!
 # Praktikum 2: Stream Controllers dan Sinks
 
 `StreamControllers` akan membuat jembatan antara `Stream` dan `Sink`. `Stream` berisi data secara sekuensial yang dapat diterima oleh subscriber manapun, sedangkan `Sink` digunakan untuk mengisi (injeksi) data.
