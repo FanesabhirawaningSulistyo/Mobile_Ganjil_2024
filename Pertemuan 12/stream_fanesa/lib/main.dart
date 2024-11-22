@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stream_fanesa/stream.dart';
-import 'dart:async';
-import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -14,166 +11,45 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fanesa',
+      title: 'Flutter JSON Demo',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        primarySwatch: Colors.blue,
       ),
-      home: const StreamHomepage(),
+      home: const MyHomePage(),
     );
   }
 }
 
-class StreamHomepage extends StatefulWidget {
-  const StreamHomepage({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
 
   @override
-  State<StreamHomepage> createState() => _StreamHomepageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _StreamHomepageState extends State<StreamHomepage> {
-  Color bgColor = Colors.blueGrey;
-  late ColorStream colorStream;
-  int lastNumber = 0;
-  late StreamController numberStreamController;
-  late NumberStream numberStream;
-  late StreamTransformer transformer;
-  late StreamSubscription subscription;
-  late StreamSubscription subscription2;
-  String values = "";
-
-  void changeColor() async {
-    // Praktikum 1
-    // await for (var eventColor in colorStream.getColors()) {
-    //   setState(() {
-    //     bgColor = eventColor;
-    //   });
-    // }
-    // colorStream.getColors().listen((event) {
-    //   setState(() {
-    //     bgColor = event;
-    //   });
-    // });
-
-    // Praktikum 2
-    // Stream stream = numberStreamController.stream;
-    // stream.listen((event) {
-    //   setState(() {
-    //     lastNumber = event;
-    //   });
-    // }).onError((error) {
-    //   setState(() {
-    //     lastNumber = -1;
-    //   });
-    // });
-  }
-
-  void addRandomNumber() {
-    Random random = Random();
-    int myNum = random.nextInt(10);
-    // numberStream.addNumberToSink(myNum);
-    // numberStream.addError();
-    if (!numberStreamController.isClosed) {
-      numberStreamController.sink.add(myNum);
-    } else {
-      setState(() {
-        lastNumber = -1;
-      });
-    }
-  }
- @override
-  void initState() {
-    super.initState();
-
-    // colorStream = ColorStream();
-    // changeColor();
-
-    // transformer = StreamTransformer<int, int>.fromHandlers(
-    //   handleData: (value, sink) {
-    //     sink.add(value * 10);
-    //   },
-    //   handleError: (error, stackTrace, sink) {
-    //     sink.add(-1);
-    //   },
-    //   handleDone: (sink) => sink.close(),
-    // );
-    // Stream stream = numberStreamController.stream;
-    // stream.transform(transformer).listen((event) {
-    //   setState(() {
-    //     lastNumber = event;
-    //   });
-    // }).onError((error) {
-    //   setState(() {
-    //     lastNumber = -1;
-    //   });
-    // });
-
-    numberStream = NumberStream();
-    numberStreamController = numberStream.controller;
-    Stream stream = numberStreamController.stream.asBroadcastStream();
-    subscription = stream.listen((event) {
-      setState(() {
-        values += "$event - ";
-      });
-    });
-     subscription2 = stream.listen((event) {
-      setState(() {
-        values += "$event - ";
-      });
-    });
-    subscription.onError((error) {
-      setState(() {
-        lastNumber = -1;
-      });
-    });
-    subscription.onDone(() {
-      print('On done was called!');
-    });
-  }
-
-  void stopStream() {
-    numberStreamController.close();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-
-    subscription.cancel();
-    numberStream.close();
-  }
-
+class _MyHomePageState extends State<MyHomePage> {
+  String pizzaString = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Stream'),
-        backgroundColor: Colors.purple,
-        titleTextStyle: const TextStyle(
-          color: Colors.white,
-        ),
+        title: const Text('250N'),
       ),
-      // body: Container(
-      //   decoration: BoxDecoration(color: bgColor),
-      // ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(values),
-            ElevatedButton(
-              onPressed: () => addRandomNumber(),
-              child: const Text("New Random Number"),
-            ),
-            ElevatedButton(
-              onPressed: () => stopStream(),
-              child: const Text("Stop Subscription"),
-            ),
-          ],
-        ),
-      ),
+      body: Text(pizzaString),
     );
+  }
+
+   @override
+  void initState() {
+    super.initState();
+    readJsonFile();
+  }
+
+  Future readJsonFile() async {
+    String myString = await DefaultAssetBundle.of(context)
+        .loadString('assets/pizzalist.json');
+    setState(() {
+      pizzaString = myString;
+    });
   }
 }
