@@ -47,7 +47,7 @@ class _NavigationDialogState extends State<NavigationDialog> {
     return Scaffold(
       backgroundColor: color,
       appBar: AppBar(
-        title: const Text('BNavigation Dialog Screen'),
+        title: const Text('Navigation Dialog Screen'),
         backgroundColor: Colors.purple,
         titleTextStyle: const TextStyle(
           color: Colors.white,

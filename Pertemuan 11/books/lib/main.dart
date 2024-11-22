@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-import 'dart:async';
-//import 'package:async/async.dart';
-// import 'package:books/geolocation.dart';
-// import 'package:books/navigation_first.dart';
-import 'package:books/navigation_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +8,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,134 +16,60 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const NavigationDialog(),
+      home: const MyHomePage(),
     );
   }
 }
 
-class FuturePage extends StatefulWidget {
-  const FuturePage({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
 
   @override
-  State<FuturePage> createState() => _FuturePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
+// Langkah 4 : , buat variabel status integer baru bernama appCounter
+class _MyHomePageState extends State<MyHomePage> {
+  int appCounter = 0; // Variabel untuk menyimpan jumlah pembukaan aplikasi
 
-class _FuturePageState extends State<FuturePage> {
-  String result = '';
+  // Langkah 5: Membuat metode asinkron untuk membaca dan menulis preferensi
+  Future readAndWritePreference() async {
+    // Langkah 6: Mendapatkan instance dari SharedPreferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    
+    // Langkah 7: Membaca nilai appCounter, jika belum ada maka set ke 0
+    appCounter = prefs.getInt('appCounter') ?? 0;
+    
+    // Menaikkan nilai appCounter
+    appCounter++;
+    
+    // Langkah 8: Menyimpan nilai appCounter yang sudah diperbarui
+    await prefs.setInt('appCounter', appCounter);
 
-  // Praktikum 1
-    Future<Response> getData() async {
-    const authority = 'www.googleapis.com';
-    const path = '/books/v1/volumes/2MA8DwAAQBAJ';
-    Uri url = Uri.https(authority, path);
-    return http.get(url);
+    // Langkah 9: Memperbarui tampilan dengan nilai appCounter yang baru
+    setState(() {});
   }
 
-  // Praktikum 2
-  Future<int> returnOneAsync() async {
-    await Future.delayed(const Duration(seconds: 3));
-    return 1;
-  }
-
-  Future<int> returnTwoAsync() async {
-    await Future.delayed(const Duration(seconds: 3));
-    return 2;
-  }
-
-  Future<int> returnThreeAsync() async {
-    await Future.delayed(const Duration(seconds: 3));
-    return 3;
-  }
-
-  Future count() async {
-    int total = 0;
-    total = await returnOneAsync();
-    total += await returnTwoAsync();
-    total += await returnThreeAsync();
+  // Langkah 13: Membuat metode untuk menghapus preferensi yang disimpan
+  Future deletePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear(); // Menghapus semua preferensi yang disimpan
     setState(() {
-      result = total.toString();
+      appCounter = 0; // Mengatur nilai appCounter ke 0 setelah dihapus
     });
   }
 
-// Praktikum 3
-  late Completer completer;
-
-  Future getNumber() {
-    completer = Completer<int>();
-    calculate();
-    return completer.future;
-  }
-
-  Future calculate() async {
-    await Future.delayed(const Duration(seconds: 5));
-    completer.complete(42);
-  }
-
-  Future calculate2() async {
-    try {
-      await Future.delayed(const Duration(seconds: 5));
-      completer.complete(42);
-    } catch (_) {
-      completer.completeError({});
-    }
-  }
-
-  // Praktikum 4
-  void returnFG() {
-    // FutureGroup<int> futureGroup = FutureGroup<int>();
-    // futureGroup.add(returnOneAsync());
-    // futureGroup.add(returnTwoAsync());
-    // futureGroup.add(returnThreeAsync());
-    // futureGroup.close();
-    // futureGroup.future.then((List<int> value) {
-    //   int total = 0;
-    //   for (var element in value) {
-    //     total += element;
-    //   }
-    //   setState(() {
-    //     result = total.toString();
-    //   });
-    // });
-
-    final futures = Future.wait<int>([
-      returnOneAsync(),
-      returnTwoAsync(),
-      returnThreeAsync(),
-    ]);
-
-    futures.then((List<int> value) {
-      int total = 0;
-      for (var element in value) {
-        total += element;
-      }
-      setState(() {
-        result = total.toString();
-      });
-    });
-  }
-
-  // Praktikum 5
-  Future returnError() async {
-    await Future.delayed(const Duration(seconds: 2));
-    throw Exception('Something terrible happened!');
-  }
-   Future handleError() async {
-    try {
-      await returnError();
-    } catch (e) {
-      setState(() {
-        result = e.toString();
-      });
-    } finally {
-      print('Complete');
-    }
+  @override
+  void initState() {
+    super.initState();
+    // Langkah 10: Memanggil metode readAndWritePreference di initState
+    readAndWritePreference();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Back from the Future Fanesa'),
+        title: const Text('Shared Preferences Example'),
         backgroundColor: Colors.purple,
         titleTextStyle: const TextStyle(
           color: Colors.white,
@@ -158,62 +77,16 @@ class _FuturePageState extends State<FuturePage> {
       ),
       body: Center(
         child: Column(
-           children: [
-            const Spacer(),
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text('You have opened the app $appCounter times.'), // Menampilkan jumlah pembukaan aplikasi
             ElevatedButton(
               onPressed: () {
-                // Praktikum 1
-                // setState(() {});
-                // getData().then((value) {
-                //   result = value.body.toString().substring(0, 450);
-                //   setState(() {});
-                // }).catchError((_) {
-                //   result = 'An error occured';
-                //   setState(() {});
-                // });
-
-                // Praktikum 2
-                // count();
-
-                // Praktikum 3
-                // getNumber().then((value) {
-                //   setState(() {
-                //     result = value.toString();
-                //   });
-                // });
-                // getNumber().then((value) {
-                //   setState(() {
-                //     result = value.toString();
-                //   });
-                // }).catchError((e) {
-                //   result = 'An error occurred';
-                // });
-
-                // Praktikum 4
-                // returnFG();
-
-                // Praktikum 5
-                // returnError()
-                //     .then((value) => {
-                //           setState(() {
-                //             result = 'success';
-                //           })
-                //         })
-                //     .catchError((onError) => {
-                //           setState(() {
-                //             result = onError.toString();
-                //           })
-                //         })
-                //     .whenComplete(() => print('complete'));
-                handleError();
+                // Langkah 14: Reset counter dengan menghapus preferensi
+                deletePreference();
               },
-              child: const Text("GO!"),
+              child: const Text('Reset counter'), // Tombol untuk mereset counter
             ),
-            const Spacer(),
-            Text(result),
-            const Spacer(),
-            const CircularProgressIndicator(),
-            const Spacer(),
           ],
         ),
       ),
