@@ -73,6 +73,9 @@ void initState() {
     setState(() {
       myPizzas = value; 
     });
+    String json = convertToJSON(myPizzas);
+    print(json);
+    return myPizzas;
   });
 }
 
@@ -91,4 +94,8 @@ void initState() {
     }
     return myPizzas;
   }
+
+  String convertToJSON(List<Pizza> pizzas) {
+  return jsonEncode(pizzas.map((pizza) => jsonEncode(pizza)).toList());
+}
 }

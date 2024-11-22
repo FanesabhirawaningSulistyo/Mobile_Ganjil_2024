@@ -246,3 +246,46 @@ body: ListView.builder(
 Jalankan aplikasi. Antarmuka pengguna sekarang seharusnya jauh lebih ramah dan terlihat
 seperti yang ditunjukkan pada<p>
 <img src="img/2.png">
+
+# Praktikum 2 : Reading the JSON File
+Here's the implementation for steps 1 to 5 based on the description:
+
+### Langkah 1
+Tambahkan metode baru ke kelas Pizza, di file pizza.dart, yang disebut `toJson`. Ini akan mengembalikan sebuah Map<String, dynamic> dari objek:
+
+```dart
+Map<String, dynamic> toJson() {
+  return {
+    'id': id,
+    'pizzaName': pizzaName,
+    'description': description,
+    'price': price,
+    'imageUrl': imageUrl,
+  };
+}
+```
+
+### Langkah 2
+Setelah Anda memiliki sebuah Map, Anda dapat menserialisasikannya kembali ke dalam string JSON. Tambahkan metode baru di bagian bawah kelas `_MyHomePageState`, di dalam file main.dart, yang disebut `convertToJSON`:
+
+```dart
+String convertToJSON(List<Pizza> pizzas) {
+  return jsonEncode(pizzas.map((pizza) => jsonEncode(pizza)).toList());
+}
+```
+
+### Langkah 3
+Metode ini mengubah objek List of Pizza kembali menjadi string JSON dengan memanggil metode `jsonEncode` lagi di pustaka `dart:convert`.
+
+### Langkah 4
+Terakhir, mari panggil metode tersebut dan cetak string JSON di Debug Console. Tambahkan kode berikut ke metode `readJsonFile`, tepat sebelum mengembalikan `List myPizzas`:
+
+```dart
+String json = convertToJSON(myPizzas);
+print(json);
+return myPizzas;
+```
+
+### Langkah 5
+Jalankan aplikasi. Anda akan melihat string JSON dicetak, seperti yang ditunjukkan pada gambar berikut: (output JSON dicetak di konsol Debug).
+<img src="img/3.png">
