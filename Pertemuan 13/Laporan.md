@@ -473,4 +473,82 @@ Jalankan aplikasi. Anda akan melihat layar yang terlihat seperti berikut ini: (o
 <img src="img/6.png" width = 400>
 
 
- 
+
+ # Praktikum 5: Accessing the filesystem, part 2: Working with directories
+
+### Langkah 1  
+Di bagian atas berkas `main.dart`, impor pustaka `dart:io`:  
+```dart
+import 'dart:io';
+```
+
+### Langkah 2  
+Di bagian atas kelas `_MyHomePageState`, di file `main.dart`, buat dua variabel State baru untuk file dan isinya:  
+```dart
+late File myFile;
+String fileText = '';
+```
+
+### Langkah 3  
+Masih dalam kelas `_MyHomePageState`, buat metode baru bernama `writeFile` dan gunakan kelas `File` dari pustaka `dart:io` untuk membuat file baru:  
+```dart
+Future<bool> writeFile() async {
+  try {
+    await myFile.writeAsString('Margherita, Capricciosa, Napoli');
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+```
+
+### Langkah 4  
+Dalam metode `initState`, setelah memanggil metode `getPaths`, dalam metode `then`, buat sebuah file dan panggil metode `writeFile`:  
+```dart
+@override
+void initState() {
+  getPaths().then(() {
+    myFile = File('$documentsPath/pizzas.txt');
+    writeFile();
+  });
+  super.initState();
+}
+```
+
+### Langkah 5  
+Buat metode untuk membaca file:  
+```dart
+Future<bool> readFile() async {
+  try {
+    // Read the file.
+    String fileContent = await myFile.readAsString();
+    setState(() {
+      fileText = fileContent;
+    });
+    return true;
+  } catch (e) {
+    // On error, return false.
+    return false;
+  }
+}
+```
+
+### Langkah 6  
+Dalam metode `build`, di widget `Column`, perbarui antarmuka pengguna dengan `ElevatedButton`. Ketika pengguna menekan tombol, tombol akan mencoba membaca konten file dan menampilkannya di layar:  
+```dart
+children: [
+  Text('Doc path: $documentsPath'),
+  Text('Temp path: $tempPath'),
+  ElevatedButton(
+    child: const Text('Read File'),
+    onPressed: () => readFile(),
+  ),
+  Text(fileText),
+],
+```
+
+### Langkah 7  
+Jalankan aplikasi dan tekan tombol **Baca File**. Di bawah tombol tersebut, Anda akan melihat teks:  
+**Margherita, Capricciosa, Napoli**, seperti yang ditunjukkan pada tangkapan layar. 
+
+<img src="img/7.png" width=400>
