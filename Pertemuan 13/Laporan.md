@@ -402,3 +402,75 @@ ElevatedButton(
 ### Langkah 15  
 Jalankan aplikasi lagi. Sekarang, saat Anda menekan tombol `Reset counter`, nilai `appCounter` akan dihapus.<p>
 <img src="img/5.png">
+
+
+# Praktikum 4: Accessing the filesystem, part 1: path_provider
+
+### Langkah 1  
+Buatlah project flutter baru dengan nama `path_provider`.
+
+### Langkah 2  
+Menambahkan dependency yang relevan ke file `pubspec.yaml`. Tambahkan `path_provider` dengan mengetikkan perintah ini dari Terminal Anda:
+```bash
+flutter pub add path_provider
+```
+
+### Langkah 3  
+Di bagian atas file `main.dart`, tambahkan impor `path_provider`:
+```dart
+import 'package:path_provider/path_provider.dart';
+```
+
+### Langkah 4  
+Di bagian atas kelas `_MyHomePageState`, tambahkan variabel State yang akan kita gunakan untuk memperbarui antarmuka pengguna:
+```dart
+String documentsPath = '';
+String tempPath = '';
+```
+### Langkah 5  
+Masih dalam kelas `_MyHomePageState`, tambahkan metode untuk mengambil direktori temporary dan dokumen:
+```dart
+Future getPaths() async {
+  final docDir = await getApplicationDocumentsDirectory();
+  final tempDir = await getTemporaryDirectory();
+  setState(() {
+    documentsPath = docDir.path;
+    tempPath = tempDir.path;
+  });
+}
+```
+
+### Langkah 6  
+Pada metode `initState` dari kelas `_MyHomePageState`, panggil metode `getPaths`:
+```dart
+@override
+void initState() {
+  super.initState();
+  getPaths();
+}
+```
+
+### Langkah 7  
+Pada metode `build` dari `_MyHomePageState`, buat UI dengan dua widget `Text` yang menunjukkan path yang diambil:
+```dart
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(title: const Text('Path Provider')),
+    body: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text('Doc path: $documentsPath'),
+        Text('Temp path: $tempPath'),
+      ],
+    ),
+  );
+}
+```
+
+### Langkah 8  
+Jalankan aplikasi. Anda akan melihat layar yang terlihat seperti berikut ini: (output dengan path dokumen dan temporary yang ditampilkan pada UI).<p>
+<img src="img/6.png" width = 400>
+
+
+ 
