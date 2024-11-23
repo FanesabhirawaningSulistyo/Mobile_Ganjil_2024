@@ -15,12 +15,11 @@
 
 # Praktikum 1:  Converting Dart models into JSON
 
-### Langkah 1
-Di editor favorit Anda, buat proyek Flutter baru dan beri nama store_data.
+### Langkah 1  
+Di editor favorit Anda, buat proyek Flutter baru dan beri nama `store_data`.
 
-### Langkah 2: 
-Pada file main.dart, hapus kode yang ada dan tambahkan kode awal untuk aplikasi dengan kode
-berikut:<p>
+### Langkah 2  
+Pada file `main.dart`, hapus kode yang ada dan tambahkan kode awal untuk aplikasi dengan kode berikut:
 
 ```dart
 import 'package:flutter/material.dart';
@@ -32,7 +31,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -66,16 +64,14 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 ```
 
-### Langkah 3: 
-Tambahkan folder baru ke root proyek Anda dengan nama assets.
+### Langkah 3  
+Tambahkan folder baru ke root proyek Anda dengan nama `assets`.
 
-### Langkah 4: 
-Di dalam folder aset, buat file baru bernama pizzalist.json dan salin konten yang tersedia di tautan
-https://gist.github.com/simoales/a33c1c2abe78b48a75ccfd5fa0de0620. File ini berisi daftar objek
-JSON.
+### Langkah 4  
+Di dalam folder aset, buat file baru bernama `pizzalist.json` dan salin konten yang tersedia di tautan https://gist.github.com/simoales/a33c1c2abe78b48a75ccfd5fa0de0620. File ini berisi daftar objek JSON.
 
-### Langkah 5
-Di file pubspec.yaml, tambahkan referensi ke folder aset baru, seperti yang ditunjukkan di sini:
+### Langkah 5  
+Di file `pubspec.yaml`, tambahkan referensi ke folder aset baru, seperti yang ditunjukkan di sini:
 
 ```yaml
 flutter:
@@ -83,16 +79,15 @@ flutter:
     - assets/
 ```
 
-### Langkah 6: 
-Pada kelas _MyHomePageState, di main.dart, tambahkan sebuah variabel state bernama
-pizzaString:
+### Langkah 6  
+Pada kelas `_MyHomePageState`, di `main.dart`, tambahkan sebuah variabel state bernama `pizzaString`:
+
 ```dart
 String pizzaString = '';
 ```
 
-### Langkah 7: 
-Untuk membaca isi file pizzalist.json, di bagian bawah kelas _MyHomePageState di main.dart,tambahkan metode asinkron baru yang disebut readJsonFile, yang akan mengatur nilai pizzaString,seperti yang ditunjukkan di sini:
-
+### Langkah 7  
+Untuk membaca isi file `pizzalist.json`, di bagian bawah kelas `_MyHomePageState` di `main.dart`, tambahkan metode asinkron baru yang disebut `readJsonFile`, yang akan mengatur nilai `pizzaString`, seperti yang ditunjukkan di sini:
 
 ```dart
 Future<void> readJsonFile() async {
@@ -103,9 +98,8 @@ Future<void> readJsonFile() async {
 }
 ```
 
-### Langkah 8:
- Pada kelas _MyHomePageState, timpa metode initState dan, di dalamnya, panggil metode
-readJsonFile:
+### Langkah 8  
+Pada kelas `_MyHomePageState`, timpa metode `initState` dan, di dalamnya, panggil metode `readJsonFile`:
 
 ```dart
 @override
@@ -115,22 +109,22 @@ void initState() {
 }
 ```
 
-### Langkah 9:
-Sekarang, kita ingin menampilkan JSON yang diambil di properti dalam S
+### Langkah 9  
+Sekarang, kita ingin menampilkan JSON yang diambil di properti dalam `Text` widget:
+
 ```dart
-Text(pizzaString ),
+Text(pizzaString),
 ```
 
-### Langkah 10: 
-Mari kita jalankan aplikasinya. Jika semuanya berjalan seperti yang diharapkan, Anda akan
-melihat konten file JSON di layar<p>
+### Langkah 10  
+Mari kita jalankan aplikasinya. Jika semuanya berjalan seperti yang diharapkan, Anda akan melihat konten file JSON di layar.<p>
 <img src="img/1.png">
 
-### Langkah 11: 
-Kita ingin mengubah String ini menjadi sebuah List of Objects. Kita akan mulai dengan membuat kelas baru. Dalam folder lib aplikasi kita, buat file baru bernama pizza.dart.<p>
+### Langkah 11  
+Kita ingin mengubah String ini menjadi sebuah List of Objects. Kita akan mulai dengan membuat kelas baru. Dalam folder `lib` aplikasi kita, buat file baru bernama `pizza.dart`.
 
-### Langkah 12
-Di dalam file tersebut, tentukan properti kelas Pizza:
+### Langkah 12  
+Di dalam file tersebut, tentukan properti kelas `Pizza`:
 
 ```dart
 class Pizza {
@@ -142,9 +136,9 @@ class Pizza {
 }
 ```
 
-### Langkah 13
-Di dalam kelas Pizza, tentukan konstruktor bernama fromJson, yang akan mengambil sebuah Map
-sebagai parameter dan mengubah Map menjadi sebuah instance dari Pizza:<p>
+### Langkah 13  
+Di dalam kelas `Pizza`, tentukan konstruktor bernama `fromJson`, yang akan mengambil sebuah `Map` sebagai parameter dan mengubah `Map` menjadi sebuah instance dari `Pizza`:
+
 ```dart
 Pizza.fromJson(Map<String, dynamic> json) :
         id = json['id'],
@@ -153,61 +147,61 @@ Pizza.fromJson(Map<String, dynamic> json) :
         price = json['price'],
         imageUrl = json['imageUrl'];
 ```
-### Langkah 14
-Refaktor metode readJsonFile() pada kelas _MyHomePageState. Langkah pertama adalah
-mengubah String menjadi Map dengan memanggil metode jsonDecode. Pada method readJsonFile,
-tambahkan kode yang di cetak tebal berikut ini:<p>
+
+### Langkah 14  
+Refaktor metode `readJsonFile()` pada kelas `_MyHomePageState`. Langkah pertama adalah mengubah String menjadi Map dengan memanggil metode `jsonDecode`. Pada metode `readJsonFile`, tambahkan kode berikut ini:
+
 ```dart
-Future readJsonnFile() async {
-String myString = await DefaultAssetBundle.of(context)
-.loadString('assets/pizzalist.json');
-List pizzaMapList = jsonDecode(myString);
+Future readJsonFile() async {
+  String myString = await DefaultAssetBundle.of(context)
+    .loadString('assets/pizzalist.json');
+  List pizzaMapList = jsonDecode(myString);
 }
 ```
 
-### Langkah 15
-Pastikan editor Anda secara otomatis menambahkan pernyataan impor untuk pustaka
-"dart:convert" di bagian atas file main.dart; jika tidak, tambahkan saja secara manual. Tambahkan juga pernyataan impor untuk kelas pizza:<p>
+### Langkah 15  
+Pastikan editor Anda secara otomatis menambahkan pernyataan impor untuk pustaka `dart:convert` di bagian atas file `main.dart`; jika tidak, tambahkan saja secara manual. Tambahkan juga pernyataan impor untuk kelas `Pizza`:
+
 ```dart
 import 'dart:convert';
 import './pizza.dart';
 ```
 
-### Langkah 16
-Langkah terakhir adalah mengonversi string JSON kita menjadi List of native Dart objects. Kita
-dapat melakukan ini dengan mengulang pizzaMapList dan mengubahnya menjadi objek Pizza. Di
-dalam metode readJsonFile, di bawah metode jsonDecode, tambahkan kode berikut:<p>
+### Langkah 16  
+Langkah terakhir adalah mengonversi string JSON kita menjadi List of native Dart objects. Kita dapat melakukan ini dengan mengulang `pizzaMapList` dan mengubahnya menjadi objek `Pizza`. Di dalam metode `readJsonFile`, di bawah metode `jsonDecode`, tambahkan kode berikut:
+
 ```dart
 List<Pizza> myPizzas = [];
-    for (var pizza in pizzaMapList) {
-      Pizza myPizza = Pizza.fromJson(pizza);
-      myPizzas.add(myPizza);
-    }
+for (var pizza in pizzaMapList) {
+  Pizza myPizza = Pizza.fromJson(pizza);
+  myPizzas.add(myPizza);
+}
 ```
 
-### Langkah 17
-Hapus atau beri komentar pada metode setState yang mengatur String pizzaString dan
-kembalikan daftar objek Pizza sebagai gantinya:<p>
+### Langkah 17  
+Hapus atau beri komentar pada metode `setState` yang mengatur String `pizzaString` dan kembalikan daftar objek `Pizza` sebagai gantinya:
+
 ```dart
 return myPizzas;
 ```
 
-### Langkah 18
-Ubah signature metode sehingga Anda dapat menampilkan nilai balik secara eksplisit:<p>
+### Langkah 18  
+Ubah signature metode sehingga Anda dapat menampilkan nilai balik secara eksplisit:
+
 ```dart
-  Future<List<Pizza>> readJsonFile() async {}
+Future<List<Pizza>> readJsonFile() async {}
 ```
-### Langkah 19
-Sekarang kita memiliki objek List of Pizza. Daripada hanya menampilkan sebuah Teks kepada
-pengguna, kita dapat menampilkan sebuah ListView yang berisi sekumpulan widget ListTile. Di
-bagian atas kelas _MyHomePageState, buat List<Pizza> bernama myPizzas:<p>
+
+### Langkah 19  
+Sekarang kita memiliki objek List of Pizza. Daripada hanya menampilkan sebuah `Text` kepada pengguna, kita dapat menampilkan sebuah `ListView` yang berisi sekumpulan widget `ListTile`. Di bagian atas kelas `_MyHomePageState`, buat `List<Pizza>` bernama `myPizzas`:
+
 ```dart
 List<Pizza> myPizzas = [];
 ```
 
-### Langkah 20
- Dalam metode initState, pastikan Anda mengatur myPizzas dengan hasil panggilan ke
-readJsonFile:<p>
+### Langkah 20  
+Dalam metode `initState`, pastikan Anda mengatur `myPizzas` dengan hasil panggilan ke `readJsonFile`:
+
 ```dart
 @override
 void initState() {
@@ -219,33 +213,36 @@ void initState() {
   });
 }
 ```
-### Langkah 21
-Tambahkan kode berikut ini di dalam Scaffold, di dalam metode build():<p>
+
+### Langkah 21  
+Tambahkan kode berikut ini di dalam `Scaffold`, di dalam metode `build()`:
+
 ```dart
 body: ListView.builder(
-            itemCount: myPizzas.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(myPizzas[index].pizzaName), 
-                subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(myPizzas[index].description), // Display description
-              Text(
-                '\$${myPizzas[index].price.toStringAsFixed(2)}', // Display price formatted
-                style: TextStyle(color: Colors.green), // Optional: Green color for price
-              ),
-            ],
+  itemCount: myPizzas.length,
+  itemBuilder: (context, index) {
+    return ListTile(
+      title: Text(myPizzas[index].pizzaName), 
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(myPizzas[index].description),
+          Text(
+            '\$${myPizzas[index].price.toStringAsFixed(2)}',
+            style: TextStyle(color: Colors.green),
           ),
-              );
-            },
-          ),
+        ],
+      ),
+    );
+  },
+),
 ```
 
-### Langkah 22
-Jalankan aplikasi. Antarmuka pengguna sekarang seharusnya jauh lebih ramah dan terlihat
-seperti yang ditunjukkan pada<p>
+### Langkah 22  
+Jalankan aplikasi. Antarmuka pengguna sekarang seharusnya jauh lebih ramah dan terlihat seperti yang ditunjukkan pada gambar.<p>
 <img src="img/2.png">
+
+
 
 # Praktikum 2 : Reading the JSON File
 
@@ -552,3 +549,139 @@ Jalankan aplikasi dan tekan tombol **Baca File**. Di bawah tombol tersebut, Anda
 **Margherita, Capricciosa, Napoli**, seperti yang ditunjukkan pada tangkapan layar. 
 
 <img src="img/7.png" width=400>
+
+# Praktikum 6: Using secure storage to store data
+
+### Langkah 1  
+Tambahkan **flutter_secure_storage** ke proyek Anda dengan mengetik perintah:  
+`flutter pub add flutter_secure_storage`  
+
+### Langkah 2  
+Di file `main.dart`, salin kode berikut:  
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final pwdController = TextEditingController();
+  String myPass = "";
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Secure Storage')),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              TextField(
+                controller: pwdController,
+              ),
+              ElevatedButton(
+                child: const Text('Save Value'),
+                onPressed: () {}, // Placeholder
+              ),
+              ElevatedButton(
+                child: const Text('Read Value'),
+                onPressed: () {}, // Placeholder
+              ),
+              Text(myPass),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+### Langkah 3  
+Tambahkan impor berikut di bagian atas file `main.dart`:  
+```dart
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+```
+
+### Langkah 4  
+Di bagian atas kelas `_MyHomePageState`, buat penyimpanan aman:  
+```dart
+final storage = const FlutterSecureStorage();
+final myKey = 'myPass';
+```
+
+### Langkah 5  
+Tambahkan metode untuk menulis data ke penyimpanan aman:  
+```dart
+Future<void> writeToSecureStorage() async {
+  await storage.write(key: myKey, value: pwdController.text);
+}
+```
+
+### Langkah 6  
+Tambahkan kode di dalam **tombol Save Value** untuk menulis ke penyimpanan:  
+```dart
+ElevatedButton(
+  child: const Text('Save Value'),
+  onPressed: () {
+    writeToSecureStorage();
+  },
+),
+```
+
+### Langkah 7  
+Tambahkan metode untuk membaca data dari penyimpanan aman:  
+```dart
+Future<String> readFromSecureStorage() async {
+  String secret = await storage.read(key: myKey) ?? '';
+  return secret;
+}
+```
+
+### Langkah 8  
+Tambahkan kode di dalam **tombol Read Value** untuk membaca dari penyimpanan dan memperbarui variabel `myPass`:  
+```dart
+ElevatedButton(
+  child: const Text('Read Value'),
+  onPressed: () {
+    readFromSecureStorage().then((value) {
+      setState(() {
+        myPass = value;
+      });
+    });
+  },
+),
+```
+
+### Langkah 9  
+Jalankan aplikasi. Ketik beberapa teks di bidang teks, tekan tombol **Save Value**, lalu tekan tombol **Read Value** untuk melihat teks yang Anda simpan.<p>
+<img src="img/8.png">
