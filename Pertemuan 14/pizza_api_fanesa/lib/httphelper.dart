@@ -7,6 +7,7 @@ class HttpHelper {
   final String authority = '7jg49.wiremockapi.cloud'; // Ganti dengan URL Mock API Anda
   final String path = 'pizzalist';
 
+  // Method to get the list of pizzas
   Future<List<Pizza>> getPizzaList() async {
     final Uri url = Uri.https(authority, path);
     final http.Response result = await http.get(url);
@@ -18,5 +19,14 @@ class HttpHelper {
     } else {
       return [];
     }
+  }
+
+  // Method to post a new pizza
+  Future<String> postPizza(Pizza pizza) async {
+    const postPath = '/pizza';
+    String post = json.encode(pizza.toJson());
+    Uri url = Uri.https(authority, postPath); // Replace 'your-api-domain' with the actual domain
+    http.Response r = await http.post(url, body: post);
+    return r.body;
   }
 }
