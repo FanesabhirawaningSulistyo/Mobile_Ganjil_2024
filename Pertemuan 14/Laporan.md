@@ -132,6 +132,7 @@ Widget build(BuildContext context) {
 Jalankan aplikasi Flutter Anda untuk melihat daftar pizza yang ditampilkan menggunakan data dari Mock API.<p>
 <img src="img/5.png">
 
+<br>
 
 # Praktikum 2. POST-ing data
 Dalam praktikum ini, Anda akan mempelajari cara melakukan tindakan POST pada layanan 
@@ -317,3 +318,117 @@ Tambahkan detail pizza di kolom teks dan tekan tombol Kirim Postingan. Anda akan
 <img src="img/8.png">
 
 <img src="img/9.png">
+
+<br><br>
+
+# Praktikum 3, PUT-ting data
+
+### Langkah 1
+Masuk ke layanan Lab Mock di https://app.wiremock.cloud/ dan klik bagian Stubs, kemudian, buatlah stub baru.<p>
+
+### Langkah 2
+Lengkapi isian seperti gambar berikut:<p>
+<img src="img/10.png">
+
+### Langkah 3
+Simpan stub yang telah dibuat.<p>
+<img src="img/11.png">
+
+### Langkah 4
+Di proyek Flutter, tambahkan metode `putPizza` ke kelas `HttpHelper` di file `http_helper.dart`:
+
+```dart
+Future<String> putPizza(Pizza pizza) async {
+  const putPath = '/pizza';
+  String put = json.encode(pizza.toJson());
+  Uri url = Uri.https('your-api-domain', putPath);
+  http.Response r = await http.put(url, body: put);
+  return r.body;
+}
+```
+
+### Langkah 5
+Di kelas `PizzaDetailScreen` di file `pizza_detail.dart`, tambahkan dua properti: `Pizza` dan `boolean`. Di konstruktor, atur kedua properti tersebut:
+
+```dart
+final Pizza pizza;
+final bool isNew;
+const PizzaDetailScreen({super.key, required this.pizza, required this.isNew});
+```
+
+### Langkah 6
+Di kelas `PizzaDetailScreenState`, override metode `initState`. Bila properti `isNew` dari kelas `PizzaDetail` tidak baru, properti ini akan menetapkan konten `TextFields` dengan nilai objek `Pizza` yang dilewatkan:
+
+```dart
+@override
+void initState() {
+  if (!widget.isNew) {
+    txtId.text = widget.pizza.id.toString();
+    txtName.text = widget.pizza.pizzaName;
+    txtDescription.text = widget.pizza.description;
+    txtPrice.text = widget.pizza.price.toString();
+    txtImageUrl.text = widget.pizza.imageUrl;
+  }
+  super.initState();
+}
+```
+
+### Langkah 7
+Edit metode `savePizza` sehingga memanggil metode `helper.postPizza` ketika properti `isNew` bernilai benar, dan `helper.putPizza` ketika bernilai salah:
+
+```dart
+Future savePizza() async {
+  final result = await (widget.isNew
+      ? helper.postPizza(pizza)
+      : helper.putPizza(pizza));
+  setState(() {
+    operationResult = result;
+  });
+}
+```
+
+### Langkah 8
+Di file `main.dart`, di metode `build_MyHomePageState`, tambahkan properti `onTap` ke `ListTile` sehingga saat pengguna mengetuknya, aplikasi akan mengubah rute dan menampilkan layar `PizzaDetail`, dengan menampilkan data pizza yang ada saat ini dan menjadikan `false` untuk parameter `isNew`:
+
+```dart
+return ListTile(
+  title: Text(pizzas.data![position].pizzaName),
+  subtitle: Text(pizzas.data![position].description +
+      pizzas.data![position].price.toString()),
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PizzaDetailScreen(
+          pizza: pizzas.data![position], isNew: false)),
+    );
+  },
+);
+```
+
+### Langkah 9
+Di `floatingActionButton`, passing data `Pizza` baru dan menjadikan `true` untuk parameter `isNew` ke rute `PizzaDetail`:
+
+```dart
+floatingActionButton: FloatingActionButton(
+  child: Icon(Icons.add),
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PizzaDetailScreen(
+          pizza: Pizza(), isNew: true,
+        ),
+      ),
+    );
+  },
+);
+```
+
+### Langkah 10
+Jalankan aplikasi. Pada layar utama, ketuk Pizza mana pun untuk menavigasi ke rute `PizzaDetail`.
+
+### Langkah 11
+Edit detail pizza di kolom teks dan tekan tombol Simpan. Anda akan melihat pesan yang menunjukkan bahwa detail pizza telah diperbarui.<p>
+
+<img src="img/12.png">

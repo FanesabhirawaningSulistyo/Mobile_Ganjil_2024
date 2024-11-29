@@ -3,7 +3,10 @@ import 'package:pizza_api_fanesa/pizza.dart';
 import 'httphelper.dart';
 
 class PizzaDetailScreen extends StatefulWidget {
-  const PizzaDetailScreen({super.key});
+  final Pizza pizza;
+  final bool isNew;
+
+  const PizzaDetailScreen({super.key, required this.pizza, required this.isNew});
 
   @override
   State<PizzaDetailScreen> createState() => PizzaDetailScreenState();
@@ -16,6 +19,18 @@ class PizzaDetailScreenState extends State<PizzaDetailScreen> {
   final TextEditingController txtPrice = TextEditingController();
   final TextEditingController txtImageUrl = TextEditingController();
   String operationResult = '';
+
+    @override
+  void initState() {
+    super.initState();
+    if (!widget.isNew) {
+      txtId.text = widget.pizza.id.toString();
+      txtName.text = widget.pizza.pizzaName;
+      txtDescription.text = widget.pizza.description;
+      txtPrice.text = widget.pizza.price.toString();
+      txtImageUrl.text = widget.pizza.imageUrl;
+    }
+  }
 
   @override
   void dispose() {
@@ -38,9 +53,11 @@ class PizzaDetailScreenState extends State<PizzaDetailScreen> {
     price: double.tryParse(txtPrice.text) ?? 0.0,  // Memberikan nilai default 0.0 jika harga tidak valid
     imageUrl: txtImageUrl.text,         // URL gambar pizza dari input pengguna
   );
+  final result = await (widget.isNew
+        ? helper.postPizza(pizza) // Send POST request to add a new pizza
+        : helper.putPizza(pizza)); // Send PUT request to update existing pizza
 
-  String result = await helper.postPizza(pizza);  // Mengirimkan data pizza ke server
-  setState(() {
+    setState(() {
     operationResult = result;  // Menyimpan hasil dari permintaan POST
   });
 }
