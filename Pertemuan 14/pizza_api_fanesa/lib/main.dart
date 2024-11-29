@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Colors.white,
         ),
       ),
-      body: FutureBuilder(
+      body: FutureBuilder<List<Pizza>>(
         future: callPizzas(),
         builder: (BuildContext context, AsyncSnapshot<List<Pizza>> snapshot) {
           if (snapshot.hasError) {
@@ -57,24 +57,42 @@ class _MyHomePageState extends State<MyHomePage> {
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int position) {
-              return ListTile(
-                title: Text(snapshot.data![position].pizzaName),
-                subtitle: Text(
-                  '${snapshot.data![position].description}\n\$${snapshot.data![position].price.toStringAsFixed(2)}',
-                ),
-                isThreeLine: true,
-                onTap: () {
-                  // Navigate to PizzaDetailScreen when a pizza is tapped
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PizzaDetailScreen(
-                        pizza: snapshot.data![position],
-                        isNew: false,  // Existing pizza
-                      ),
-                    ),
+              return Dismissible(
+                key: Key(snapshot.data![position].id.toString()), // Unique key for each pizza
+                onDismissed: (direction) {
+                  // Call deletePizza when a pizza is swiped away
+                  HttpHelper helper = HttpHelper();
+                  helper.deletePizza(snapshot.data![position].id);
+
+                  // Remove the pizza from the list
+                  setState(() {
+                    snapshot.data!.removeAt(position);
+                  });
+
+                  // Show a snackbar after the pizza is deleted
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('${snapshot.data![position].pizzaName} deleted')),
                   );
                 },
+                child: ListTile(
+                  title: Text(snapshot.data![position].pizzaName),
+                  subtitle: Text(
+                    '${snapshot.data![position].description}\n\$${snapshot.data![position].price.toStringAsFixed(2)}',
+                  ),
+                  isThreeLine: true,
+                  onTap: () {
+                    // Navigate to PizzaDetailScreen when a pizza is tapped
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PizzaDetailScreen(
+                          pizza: snapshot.data![position],
+                          isNew: false,  // Existing pizza
+                        ),
+                      ),
+                    );
+                  },
+                ),
               );
             },
           );

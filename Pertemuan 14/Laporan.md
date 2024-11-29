@@ -432,3 +432,65 @@ Jalankan aplikasi. Pada layar utama, ketuk Pizza mana pun untuk menavigasi ke ru
 Edit detail pizza di kolom teks dan tekan tombol Simpan. Anda akan melihat pesan yang menunjukkan bahwa detail pizza telah diperbarui.<p>
 
 <img src="img/12.png">
+
+
+<br><br>
+
+# Praktikum 4, DELETE-ing data
+
+### Langkah 1  
+Masuk ke layanan Wiremock di [https://app.wiremock.cloud] dan klik pada bagian Stubs pada contoh API. Kemudian, buatlah sebuah stub baru.
+
+### Langkah 2  
+Lengkapi isian dengan data berikut:  
+- **Name**: Delete Pizza  
+- **Verb**: DELETE  
+- **Address**: /pizza  
+- **Status**: 200  
+- **Body Type**: JSON  
+- **Body**: `{"message": "Pizza was deleted"}`  <p>
+
+<img src="img/13.png">
+
+### Langkah 3  
+Save the new stub.<p>
+<img src="img/14.png">
+
+### Langkah 4  
+Di proyek Flutter, tambahkan metode `deletePizza` ke kelas `HttpHelper` di file `http_helper.dart`:  
+```dart
+Future<String> deletePizza(int id) async {
+  const deletePath = '/pizza';
+  Uri url = Uri.https('your-api-url.com', deletePath);
+  http.Response response = await http.delete(url);
+  return response.body;
+}
+```
+
+### Langkah 5  
+Pada file `main.dart`, di metode `build` kelas `MyHomePageState`, refaktor `itemBuilder` dari `ListView.builder` agar `ListTile` terdapat dalam widget `Dismissible`, seperti berikut:  
+```dart
+return ListView.builder(
+  itemCount: (pizzas.data == null) ? 0 : pizzas.data.length,
+  itemBuilder: (BuildContext context, int position) {
+    return Dismissible(
+      key: Key(position.toString()),
+      onDismissed: (direction) {
+        HttpHelper helper = HttpHelper();
+        pizzas.data.removeWhere(
+          (element) => element.id == pizzas.data[position].id
+        );
+        helper.deletePizza(pizzas.data[position].id);
+      },
+      child: ListTile(
+        title: Text(pizzas.data[position].name),
+        subtitle: Text(pizzas.data[position].description),
+      ),
+    );
+  },
+);
+```
+
+### Langkah 6  
+Jalankan aplikasi. Saat Anda menggeser elemen apa pun dari daftar pizza, `ListTile` akan menghilang dari tampilan dan data pizza tersebut akan dihapus melalui API.<p>
+<img src="img/15.png">
